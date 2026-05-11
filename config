@@ -1,0 +1,126 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "height": 34,
+    "spacing": 4,
+
+    // Layout configuration
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "custom/todo",
+        "clock"
+    ],
+    "modules-right": [
+        "custom/vscode",
+        "memory",
+        "battery",
+        "custom/notification",
+        "pulseaudio",
+        "network",
+        "custom/power"
+    ],
+
+    // --- Modules ---
+
+    "custom/launcher": {
+        "format": "", // Arch logo (or change to your preferred icon)
+        "on-click": "~/.config/rofi/scripts/master_menu.sh",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+
+    "clock": {
+        "format": " {:%I:%M %p}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "custom/vscode": {
+        "format": "󰨞",
+        "on-click": "code",
+        "tooltip": false
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": " {}%",
+        "tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "swaync-client -t -sw",
+        "escape": true
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁 Muted",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle", // Left-click to toggle mute
+        "on-click-right": "pavucontrol" // Right-click to open the volume mixer
+    },
+
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀  Wired",
+        "format-disconnected": "󰈂 Disconnected",
+        "tooltip-format": "{ifname} via {gwaddr}"
+    },
+
+    "custom/power": {
+        "format": "",
+        "on-click": "wlogout", // Or your preferred power menu script
+        "tooltip": false
+    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": "",
+            "empty": "" // Optional: Different icon for empty workspaces
+        },
+        "persistent-workspaces": {
+            "*": [ 1, 2, 3, 4 ] // Adjust these numbers to show exactly the ones you want
+        }
+    },
+    "custom/todo": {
+    "format": " {}",
+    "return-type": "json",
+    "exec": "python3 ~/.local/bin/todo_app.py status", // Added 'status'
+    "restart-interval": 5,
+    "on-click": "python3 ~/.local/bin/todo_app.py", // No 'status' here
+    "tooltip": true,
+    "escape": true 
+}
+}
