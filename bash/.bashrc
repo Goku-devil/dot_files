@@ -1,34 +1,46 @@
-#
-# ~/.bashrc
-#
+# ==============================================================================
+# ENVIRONMENT, HISTORY, & SANE DEFAULTS
+# ==============================================================================
+export LANG=en_US.UTF-8
+export EDITOR=nvim
+export VISUAL=nvim
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+shopt -s checkwinsize
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
+# ==============================================================================
+# ALIASES
+# ==============================================================================
 alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+alias la='ls -la --color=auto'
 alias grep='grep --color=auto'
-alias pacman='sudo pacman'
+alias v='nvim'
+alias vi='nvim'
 
 # ==============================================================================
-# KALI LINUX PROMPT (ROUNDED & COLORED SYMBOL)
+# CUSTOM BOXED PROMPT (Diamond Edition)
 # ==============================================================================
-# Define colors
-kali_blue='\[\e[34m\]'
-kali_white='\[\e[97m\]'
-kali_red='\[\e[31m\]'
-symbol_color='\[\e[35m\]'  # Magenta/Pink for the symbol
-reset='\[\e[0m\]'
+_mocha_prompt() {
+    # ANSI escape color declarations (Catppuccin Mocha TrueColor)
+    local surface1="\[\033[38;2;69;71;90m\]"
+    local sapphire="\[\033[38;2;116;199;236m\]"
+    local blue="\[\033[38;2;137;180;250m\]"
+    local lavender="\[\033[38;2;180;190;254m\]"
+    local rosewater="\[\033[38;2;245;224;220m\]"
+    local text="\[\033[38;2;205;214;244m\]"
+    local reset="\[\033[0m\]"
 
-# Check if root or normal user
-if [ "$EUID" -eq 0 ]; then
-    # Root gets the red prompt and a skull
-    frame_color=$kali_red
-    prompt_symbol="☠"
-else
-    # Normal user gets the blue prompt
-    frame_color=$kali_blue
-    prompt_symbol="@"
-fi
+    # High-resolution Nerd Font structural symbols
+    local arch_icon="󰣇 "
+    local split_sym=" @ "   # The diamond divider
+    local dir_icon="  "
+    local prompt_sym="❯"
 
-# Set the PS1 variable
-PS1="${frame_color}╭──(${kali_blue}\u${symbol_color}${prompt_symbol}${kali_blue}\h${frame_color})-[${kali_white}\w${frame_color}]\n${frame_color}╰─${kali_blue}\$${reset} "
+    # Build layout structure
+    PS1="${surface1}╭─(${sapphire}${arch_icon}${text}\u${blue}${split_sym}\h${surface1})─[${lavender}${dir_icon}\w${surface1}]\n${surface1}╰─${rosewater}${prompt_sym}${reset} "
+}
+_mocha_prompt

@@ -1,0 +1,107 @@
+/* --- Catppuccin Mocha Rofi Theme --- */
+
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    display-drun: "  Apps";
+    display-run: "  Run";
+    display-window: "  Window";
+    drun-display-format: "{name}";
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+* {
+    /* Official Catppuccin Mocha Palette */
+    bg-base:         #11111be6; /* Crust (90% Opacity) */
+    bg-alt:          #1e1e2e;   /* Base */
+    bg-surface:      #313244;   /* Surface 0 */
+    fg-base:         #cdd6f4;   /* Text */
+    fg-muted:        #6c7086;   /* Overlay 0 */
+    
+    /* Accents */
+    accent-lavender: #b4befe;   /* Lavender */
+    accent-sapphire: #74c7ec;   /* Sapphire */
+
+    background-color: transparent;
+    text-color: @fg-base;
+    margin: 0;
+    padding: 0;
+}
+
+window {
+    width: 650px;
+    border: 2px solid;
+    border-color: @accent-lavender;
+    border-radius: 8px;          /* Slightly rounder for a modern look */
+    background-color: @bg-base;
+    padding: 18px;
+}
+
+mainbox {
+    spacing: 12px;
+}
+
+inputbar {
+    spacing: 10px;
+    padding: 12px;
+    background-color: @bg-alt;
+    border-radius: 6px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @accent-lavender;
+    font: "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @fg-muted;
+    text-color: @fg-base;
+}
+
+listview {
+    lines: 8;
+    spacing: 6px;
+    scrollbar: false;
+    border: 0px;
+    fixed-height: true;
+}
+
+element {
+    padding: 10px 12px;
+    border-radius: 6px;
+    spacing: 12px;
+    background-color: transparent;
+}
+
+/* --- Fixed Element States --- */
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg-base;         /* FIXED: Was previously hiding text using @bg-base */
+}
+
+element alternate.normal {
+    background-color: transparent; /* Clean transparent alternate look */
+    text-color: @fg-base;
+}
+
+element selected.normal {
+    background-color: @bg-surface;   /* Subtle container contrast */
+    text-color: @accent-sapphire;   /* Beautiful Sapphire highlight */
+    border: 1px solid;
+    border-color: @accent-lavender;
+}
+
+/* --- Critical Inherit Fixes --- */
+element-icon {
+    size: 24px;
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element-text {
+    vertical-align: 0.5;
+    background-color: transparent;
+    text-color: inherit;            /* FIXED: Ensures text inherits selection colors */
+}
