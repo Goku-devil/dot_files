@@ -44,3 +44,4 @@ _mocha_prompt() {
     PS1="${surface1}╭─(${sapphire}${arch_icon}${text}\u${blue}${split_sym}\h${surface1})─[${lavender}${dir_icon}\w${surface1}]\n${surface1}╰─${rosewater}${prompt_sym}${reset} "
 }
 _mocha_prompt
+. "$HOME/.cargo/env"
