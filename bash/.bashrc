@@ -20,6 +20,10 @@ alias la='ls -la --color=auto'
 alias grep='grep --color=auto'
 alias v='nvim'
 alias vi='nvim'
+alias ..='cd ..'
+alias pacman='sudo pacman'
+alias mk='mkdir'
+alias rm='rm -i'
 
 # ==============================================================================
 # CUSTOM BOXED PROMPT (Diamond Edition)

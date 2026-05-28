@@ -1,0 +1,69 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    font-family: "Cantarell", sans-serif;
+}
+
+/* Open Animation */
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Base Window - Semi-transparent Mocha background */
+window {
+    background-color: rgba(30, 30, 46, 0.6); /* Catppuccin Mocha Base with 60% opacity */
+}
+
+/* Button Styling */
+button {
+    color: #cdd6f4; /* Mocha Text */
+    /* Highly transparent Surface0 for the buttons */
+    background-color: rgba(49, 50, 68, 0.2); 
+    border: 2px solid transparent;
+    border-radius: 24px;
+    margin: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%; /* Initial icon size */
+    
+    /* Apply fade-in on launch */
+    animation: fadein 0.4s ease-in-out;
+    
+    /* Micro-animation transition for hover states */
+    transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                background-size 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover Micro-Animation */
+button:hover {
+    background-color: rgba(203, 166, 247, 0.15); /* Transparent Mocha Mauve background */
+    border: 2px solid #cba6f7; /* Solid Mauve border */
+    background-size: 30%; /* Icon subtly scales up */
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Default Icon Paths (adjust if you use custom icons) */
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+}
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"));
+}
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+}
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"));
+}
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+}
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+}
