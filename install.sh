@@ -44,6 +44,7 @@ OFFICIAL_PACKAGES=(
     swaync
     hyprshot
     hypridle
+    hyprlock
 )
 
 print_info "Checking official repository packages..."

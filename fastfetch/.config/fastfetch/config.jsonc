@@ -4,97 +4,123 @@
         "source": "~/.config/fastfetch/arch-logo.txt",
         "type": "auto",
         "color": {
-            "6": "blue" 
+            "6": "blue"
         },
         "padding": {
-            "top": 1,
-            "left": 2,
-            "right": 3
+            "top": 2,
+            "left": 1,
+            "right": 2
         }
     },
     "display": {
-        "separator": " 󰁔 ", 
+        "separator": " ➜  ",
         "color": {
-            "keys": "blue",
-            "title": "blue"
-        },
-        "key": {
-            "width": 15 
+            "separator": "white"
         }
     },
     "modules": [
-        "title",
-        {
-            "type": "separator",
-            "string": "━"     // Heavy, solid tech bar under the title block
-        },
-        // Group 1: System Core
+        "break",
+        // DISTRO GROUP
         {
             "type": "os",
-            "key": "󰣇 OS"
+            "key": "󰣇 DISTRO",
+            "keyColor": "34"
         },
         {
             "type": "kernel",
-            "key": " Kernel",
-            "format": "{2}"
-        },
-        {
-            "type": "uptime",
-            "key": "󱎫 Uptime"
+            "key": " ├─  ",
+            "keyColor": "34"
         },
         {
             "type": "packages",
-            "key": "󰏖 Packages"
+            "key": " ├─ 󰏖 ",
+            "keyColor": "34"
         },
         {
-            "type": "separator",
-            "string": "·"     // Repeats as a clean, fine dot-matrix divider line
-        },
-        // Group 2: Environment
-        {
-            "type": "wm",
-            "key": " WM"
+            "type": "uptime",
+            "key": " ├─ 󰅐 ",
+            "keyColor": "34"
         },
         {
             "type": "shell",
-            "key": "󱆃 Shell"
+            "key": " └─  ",
+            "keyColor": "34"
+        },
+        "break",
+        // DE/WM GROUP
+        {
+            "type": "wm",
+            "key": " DE/WM",
+            "keyColor": "33"
+        },
+        {
+            "type": "wmtheme",
+            "key": " ├─ 󰉼 ",
+            "keyColor": "33"
+        },
+        {
+            "type": "icons",
+            "key": " ├─ 󰀻 ",
+            "keyColor": "33"
+        },
+        {
+            "type": "font",
+            "key": " ├─  ",
+            "keyColor": "33"
         },
         {
             "type": "terminal",
-            "key": " Terminal"
+            "key": " └─  ",
+            "keyColor": "33"
         },
+        "break",
+        // SYSTEM GROUP
         {
-            "type": "separator",
-            "string": "·"     // Matching dot-matrix divider line
+            "type": "host",
+            "key": "󰌢 SYSTEM",
+            "keyColor": "36"
         },
-        // Group 3: Hardware Specs
         {
             "type": "cpu",
-            "key": " CPU",
-            "format": "{1}"
+            "key": " ├─  ",
+            "keyColor": "36"
         },
         {
             "type": "gpu",
-            "key": "󰢮 GPU",
-            "format": "{2}"
+            "key": " ├─ 󰢮 ",
+            "keyColor": "36"
+        },
+        {
+            "type": "display",
+            "key": " ├─ 󰹑 ",
+            "keyColor": "36"
         },
         {
             "type": "memory",
-            "key": " Memory"
+            "key": " ├─ 󰍛 ",
+            "keyColor": "36"
         },
         {
-            "type": "disk",
-            "key": "󰋊 Disk",
-            "format": "{1} / {2} ({6})"
+            "type": "localip",
+            "key": " ├─ 󰲛 ",
+            "keyColor": "36"
         },
         {
-            "type": "board",
-            "key": "󰘚 Board"
+            "type": "battery",
+            "key": " └─  ",
+            "keyColor": "36"
         },
-        "break", 
+        "break",
+        // AUDIO GROUP
         {
-            "type": "colors",
-            "symbol": "circle"
-        }
+            "type": "sound",
+            "key": " AUDIO",
+            "keyColor": "35"
+        },
+        "break",
+	{
+	    "type": "colors",
+	    "symbol": "circle"
+	}
     ]
 }

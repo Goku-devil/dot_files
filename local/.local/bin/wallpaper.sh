@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # --- Configuration ---
-WALLPAPER_DIR="$HOME/Wallpapers/walls-catppuccin-mocha"
+WALLPAPER_DIR="$HOME/Wallpaper/walls-catppuccin-mocha"
 
 if [ ! -d "$WALLPAPER_DIR" ]; then
     notify-send "Wallpaper Picker" "Error: Directory $WALLPAPER_DIR not found."
