@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Define directories
+DOTFILES_DIR="$HOME/.dotfiles"
+TARGET_DIR="$HOME"
+
+# Color definitions
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}==> Initiating dotfiles deployment...${NC}\n"
+
+# 1. Verify GNU Stow is installed
+if ! command -v stow &> /dev/null; then
+    echo -e "${RED}[ ERROR ] 'stow' is not installed.${NC}"
+    echo "          Please install it using your package manager."
+    exit 1
+fi
+
+# 2. Check if the .dotfiles directory exists
+if [ ! -d "$DOTFILES_DIR" ]; then
+    echo -e "${RED}[ ERROR ] Directory not found: $DOTFILES_DIR${NC}"
+    exit 1
+fi
+
+cd "$DOTFILES_DIR" || exit 1
+
+# 3. Gather packages
+PACKAGES=$(find . -maxdepth 1 -mindepth 1 -type d ! -name ".*" -exec basename {} \; | sort)
+
+if [ -z "$PACKAGES" ]; then
+    echo -e "${RED}[ ERROR ] No packages found in $DOTFILES_DIR${NC}"
+    exit 1
+fi
+
+# 4. Stow each package with formatted output
+for package in $PACKAGES; do
+    # Print the package name aligned to 25 characters
+    printf "  %-25s" "Stowing $package..."
+    
+    # Run stow quietly, capturing both stdout and stderr
+    # Removed the -v flag so it only complains if there is a real error
+    ERROR_MSG=$(stow -R -t "$TARGET_DIR" "$package" 2>&1)
+
+    if [ $? -eq 0 ]; then
+        # Success
+        printf "[ ${GREEN}OK${NC} ]\n"
+    else
+        # Failure
+        printf "[ ${RED}ERROR${NC} ]\n"
+        # Print the error message indented for readability
+        echo -e "${RED}$ERROR_MSG${NC}" | sed 's/^/      /'
+    fi
+done
+
+echo -e "\n${GREEN}==> Deployment complete!${NC}"

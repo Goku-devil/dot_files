@@ -1,0 +1,132 @@
+#!/usr/bin/env bash
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# ==========================================
+# Cyberpunk / Minimalist Aesthetics & Colors
+# ==========================================
+CYAN='\033[38;2;0;255;255m'
+MAGENTA='\033[38;2;255;0;255m'
+LIME='\033[38;2;57;255;20m'
+DIM='\033[2m'
+NC='\033[0m' # No Color
+BOLD='\033[1m'
+
+# ==========================================
+# UI Functions
+# ==========================================
+print_header() {
+    clear
+    echo -e "${CYAN}${BOLD}"
+    cat << "EOF"
+ ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
+ ┃    ______       __           '       _____      __              ┃
+ ┃   / ____/____  / /__ __  __         / ___/___  / /_ __  __ ____ ┃
+ ┃  / / __ / __ \/ //_// / / /  ____   \__ \/ _ \/ __// / / // __ \┃
+ ┃ / /_/ // /_/ / ,<  / /_/ /  /___/  ___/ /  __/ /_ / /_/ // /_/ /┃
+ ┃ \____/ \____/_/|_| \__,_/         /____/\___/\__/ \__,_// .___/ ┃
+ ┃                                                        /_/      ┃
+ ┃  ❯ ARCH LINUX // HYPRLAND ARCHITECTURE // AUTOMATED DEPLOYMENT  ┃
+ ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+EOF
+    echo -e "${NC}\n"
+}
+
+print_info() {
+    echo -e "${MAGENTA} 󰮯 ${NC} ${BOLD}$1${NC}"
+}
+
+print_success() {
+    echo -e "${LIME} 󰄬 ${NC} $1"
+}
+
+print_skip() {
+    echo -e "${DIM} 󰜺 $1 (Already installed)${NC}"
+}
+
+print_header
+
+# ==========================================
+# 1. Install Dependencies & AUR Helper (yay)
+# ==========================================
+print_info "Synchronizing Base Dependencies..."
+
+# Using --needed skips reinstalling if already present
+sudo pacman -S --needed --noconfirm git base-devel
+
+if ! command -v yay &> /dev/null; then
+    print_info "Bootstrapping yay (AUR Helper)..."
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    cd /tmp/yay
+    makepkg -si --noconfirm
+    cd - > /dev/null
+    rm -rf /tmp/yay
+    print_success "yay installed successfully."
+else
+    print_skip "yay"
+fi
+
+echo ""
+
+# ==========================================
+# 2. Official Arch Packages
+# ==========================================
+OFFICIAL_PACKAGES=(
+    rofi
+    waybar
+    wlogout
+    neovim
+    swaync
+    hyprshot
+    hypridle
+    hyprlock
+    stow
+)
+
+print_info "Evaluating Official Repository Packages..."
+
+MISSING_OFFICIAL=()
+for pkg in "${OFFICIAL_PACKAGES[@]}"; do
+    if pacman -Qq "$pkg" &> /dev/null; then
+        print_skip "$pkg"
+    else
+        MISSING_OFFICIAL+=("$pkg")
+    fi
+done
+
+if [ ${#MISSING_OFFICIAL[@]} -gt 0 ]; then
+    print_info "Batch installing missing official packages..."
+    sudo pacman -S --noconfirm "${MISSING_OFFICIAL[@]}"
+    print_success "Official packages synchronized."
+fi
+
+echo ""
+
+# ==========================================
+# 3. AUR Packages
+# ==========================================
+AUR_PACKAGES=(
+    visual-studio-code-bin
+    zen-browser-bin
+)
+
+print_info "Evaluating Arch User Repository (AUR) Packages..."
+
+MISSING_AUR=()
+for pkg in "${AUR_PACKAGES[@]}"; do
+    if pacman -Qq "$pkg" &> /dev/null; then
+        print_skip "$pkg"
+    else
+        MISSING_AUR+=("$pkg")
+    fi
+done
+
+if [ ${#MISSING_AUR[@]} -gt 0 ]; then
+    print_info "Batch installing missing AUR packages..."
+    yay -S --noconfirm "${MISSING_AUR[@]}"
+    print_success "AUR packages synchronized."
+fi
+
+echo ""
+print_success "System architecture deployed. Ready."

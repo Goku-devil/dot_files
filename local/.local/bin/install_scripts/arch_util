@@ -1,0 +1,115 @@
+#!/bin/bash
+
+# Define colors for aesthetics
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[1;34m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color
+
+# Ensure the script is run with standard user privileges
+if [ "$EUID" -eq 0 ]; then
+  echo -e "${RED}Please do not run this script as root. It will prompt for sudo when needed.${NC}"
+  exit 1
+fi
+
+# Function to draw the header
+draw_header() {
+    echo -e "\n${CYAN}${BOLD}╔══════════════════════════════════════════╗${NC}"
+    echo -e "${CYAN}${BOLD}║        Goku's Arch Utility v0.1.2        ║${NC}"
+    echo -e "${CYAN}${BOLD}╚══════════════════════════════════════════╝${NC}"
+}
+
+while true; do
+    draw_header
+    echo -e "  ${BOLD}1.${NC} Remove orphaned packages"
+    echo -e "  ${BOLD}2.${NC} Update the system"
+    echo -e "  ${BOLD}3.${NC} Search and install a package"
+    echo -e "  ${BOLD}4.${NC} Uninstall a package"
+    echo -e "  ${BOLD}5.${NC} Exit"
+    echo -e "${CYAN}────────────────────────────────────────────${NC}"
+    
+    # Yellow prompt for user input
+    echo -en "${YELLOW}Choose an option [1-5]: ${NC}"
+    read -r choice
+
+    case $choice in
+        1)
+            echo -e "\n${BLUE}[*] Checking for orphaned packages...${NC}"
+            orphans=$(pacman -Qtdq)
+            
+            if [[ -z "$orphans" ]]; then
+                echo -e "${GREEN}✓ No orphaned packages to remove.${NC}"
+            else
+                echo -e "${YELLOW}! Removing orphans...${NC}"
+                sudo pacman -Rns $orphans
+                echo -e "${GREEN}✓ Orphans removed successfully.${NC}"
+            fi
+            ;;
+        2)
+            echo -e "\n${BLUE}[*] Updating system...${NC}"
+            if command -v yay &> /dev/null; then
+                echo -e "${CYAN}-> Found 'yay'. Updating official repos and AUR...${NC}"
+                yay -Syu
+            else
+                echo -e "${CYAN}-> 'yay' not found. Updating official repos via pacman...${NC}"
+                sudo pacman -Syu
+            fi
+            echo -e "${GREEN}✓ Update complete.${NC}"
+            ;;
+        3)
+            echo -e "\n${BLUE}[*] Search and Install${NC}"
+            echo -en "${YELLOW}Enter the package name to search for: ${NC}"
+            read -r pkg
+            echo -en "${YELLOW}Search via (p)acman or (a)ur? [p/a]: ${NC}"
+            read -r method
+            
+            if [[ "$method" == "p" ]]; then
+                echo -e "${CYAN}-> Searching official repositories...${NC}\n"
+                pacman -Ss "$pkg"
+                echo ""
+                echo -en "${YELLOW}Enter the EXACT package name to install (or press Enter to cancel): ${NC}"
+                read -r exact_pkg
+                if [[ -n "$exact_pkg" ]]; then
+                    sudo pacman -S "$exact_pkg"
+                fi
+            elif [[ "$method" == "a" ]]; then
+                if command -v yay &> /dev/null; then
+                    echo -e "${CYAN}-> Searching AUR via yay...${NC}\n"
+                    yay "$pkg" 
+                else
+                    echo -e "${RED}✗ Error: 'yay' is not installed. Please install an AUR helper first.${NC}"
+                fi
+            else
+                echo -e "${RED}✗ Invalid selection.${NC}"
+            fi
+            ;;
+        4)
+            echo -e "\n${BLUE}[*] Uninstall a Package${NC}"
+            echo -e "${CYAN}Note: This uses 'pacman -Rs' to remove the package and its unused dependencies.${NC}"
+            echo -en "${YELLOW}Enter the EXACT package name to uninstall (or press Enter to cancel): ${NC}"
+            read -r uninstall_pkg
+            
+            if [[ -n "$uninstall_pkg" ]]; then
+                # Both official and AUR packages can be removed via pacman
+                sudo pacman -Rs "$uninstall_pkg"
+                echo -e "${GREEN}✓ Uninstallation finished.${NC}"
+            else
+                echo -e "${YELLOW}! Operation cancelled.${NC}"
+            fi
+            ;;
+        5)
+            echo -e "\n${GREEN}Exiting... Have a great day!${NC}\n"
+            exit 0
+            ;;
+        *)
+            echo -e "\n${RED}✗ Invalid option. Please try again.${NC}"
+            ;;
+    esac
+    
+    # Pause before showing the menu again so the user can read the output
+    echo -en "\n${NC}Press [Enter] to return to the menu..."
+    read -r
+done
