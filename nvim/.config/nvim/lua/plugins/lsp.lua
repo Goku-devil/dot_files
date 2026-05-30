@@ -3,7 +3,7 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/cmp-nvim-lsp", 
+        "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
         -- 1. Setup Mason
@@ -21,12 +21,9 @@ return {
                 "cssls",         -- CSS
                 "ts_ls",         -- JS / TS
             },
-            -- This natively replaces the old `setup_handlers` block!
-            -- It tells Neovim to automatically start any server Mason installs.
             automatic_enable = true, 
         })
 
-        -- 3. Connect Autocomplete (cmp) and Keybinds globally
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         -- The special '*' target applies these settings to EVERY language server
