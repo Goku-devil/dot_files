@@ -71,4 +71,12 @@ hl.bind("SUPER + X", function ()
     hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
     hl.dispatch(hl.dsp.window.move({workspace = "special:minimize"}))
     hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
-end) 
+end)
+
+--brightness control
+
+-- Increase brightness with SUPER + F12
+hl.bind("SUPER + F12", hl.dsp.exec_cmd("ddcutil setvcp 10 + 5 --noverify"))
+
+-- Decrease brightness with SUPER + F11
+hl.bind("SUPER + F11", hl.dsp.exec_cmd("ddcutil setvcp 10 - 5 --noverify"))
