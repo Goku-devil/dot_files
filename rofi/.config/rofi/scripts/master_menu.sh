@@ -89,8 +89,8 @@ while true; do
             "Open Config")
                 # Spawns a terminal to directly edit your Lua bindings
                 # Swappable with code, nano, or micro depending on choice
-                kitty nvim ~/.config/hypr/modules/keybinds.lua & 
-                exit 0 
+                kitty nvim ~/.config/hypr/modules/keybinds.lua &
+                exit 0;
                 ;;
             *) 
                 # Hitting enter on a read-only shortcut listing cleanly exits out
