@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "margin-top": 5,
+    "margin-top": 2,
     "margin-left": 10,
     "margin-right": 10,
     "height": 34,
@@ -10,7 +10,8 @@
     // Layout configuration
     "modules-left": [
         "custom/launcher",
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "custom/clipboard"
     ],
     "modules-center": [
         "custom/todo",
@@ -35,13 +36,19 @@
     },
 
     "hyprland/workspaces": {
-        "disable-scroll": true,
+        "disable-scroll": false,
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
             "active": "",
             "default": ""
         }
+    },
+    "custom/clipboard": {
+        "format": "󰅌",
+        "on-click": "bash ~/.config/rofi/scripts/clipboard.sh",
+        "tooltip": true,
+        "tooltip-format": "Click to view clipboard history"
     },
 
     "clock": {
@@ -83,7 +90,7 @@
         "format": "{icon} {volume}%",
         "format-muted": "󰖁 Muted",
         "format-icons": {
-            "default": ["", "", ""]
+            "default": ["", " ", " "]
         },
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle", // Left-click to toggle mute
         "on-click-right": "pavucontrol" // Right-click to open the volume mixer

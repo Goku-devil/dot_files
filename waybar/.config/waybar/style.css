@@ -43,11 +43,13 @@ window#waybar {
 }
 
 tooltip {
+    padding: 10px;
     background: @base;
     border-radius: 8px;
     border: 1px solid @surface1;
 }
 tooltip label {
+    padding: 10px;
     color: @text;
 }
 
@@ -64,6 +66,7 @@ tooltip label {
 #custom-launcher,
 #custom-vscode,
 #custom-todo,
+#custom-clipboard,
 #custom-power {
     background-color: @base;
     color: @text;
