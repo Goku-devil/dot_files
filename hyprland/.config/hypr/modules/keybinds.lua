@@ -2,7 +2,7 @@
 local terminal    = "kitty"
 local fileManager = "nautilus"
 local menu        = "~/.config/rofi/scripts/master_menu.sh"
-local browser = "zen-browser"
+local browser = "google-chrome-stable"
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -73,10 +73,29 @@ hl.bind("SUPER + X", function ()
     hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
 end)
 
---brightness control
+hl.bind("SUPER + U", function ()
+    hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
+    hl.dispatch(hl.dsp.window.move({workspace = "+0"}))
+    hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
+    hl.dispatch(hl.dsp.window.move({workspace = "special:minimize"}))
+    hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
+end)
 
--- Increase brightness with SUPER + F12
+
+
+--brightness controll
 hl.bind("SUPER + F12", hl.dsp.exec_cmd("ddcutil setvcp 10 + 5 --noverify"))
-
--- Decrease brightness with SUPER + F11
 hl.bind("SUPER + F11", hl.dsp.exec_cmd("ddcutil setvcp 10 - 5 --noverify"))
+
+-- Web apps keybinds
+hl.bind("SUPER + A", hl.dsp.exec_cmd("google-chrome-stable --app='https://gemini.google.com'"))
+hl.bind("SUPER + W", hl.dsp.exec_cmd("google-chrome-stable --app='https://web.whatsapp.com'"))
+
+-- Bind SUPER + H to launch clipboard menu
+hl.bind("SUPER + H", hl.dsp.exec_cmd("bash ~/.config/rofi/scripts/clipboard.sh"))
+
+-- emoji menu
+hl.bind("SUPER + E",
+    hl.dsp.exec_cmd(
+       "rofi -show emoji -emoji-format \"{emoji}\" -theme-str 'window {width: 60%;} listview {columns: 8; lines: 6;} element {padding: 5px 0px;} element-text {horizontal-align: 0.5;}'" 
+    ))

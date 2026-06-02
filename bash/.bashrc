@@ -4,6 +4,7 @@
 export LANG=en_US.UTF-8
 export EDITOR=nvim
 export VISUAL=nvim
+export SUDO_EDITOR="$EDITOR"
 
 HISTCONTROL=ignoreboth
 HISTSIZE=1000

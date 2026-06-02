@@ -5,8 +5,8 @@
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  = 1,
-        gaps_out = 2,
+        gaps_in  = 0,
+        gaps_out = 0,
 
         border_size = 2,
 
@@ -25,7 +25,7 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 2,
+        rounding       = 1,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
