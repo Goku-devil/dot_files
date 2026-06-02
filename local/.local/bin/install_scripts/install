@@ -83,6 +83,8 @@ OFFICIAL_PACKAGES=(
     hyprlock
     stow
     ttf-jetbrains-mono-nerd
+    cliphist
+    wl-clipboard
 )
 
 print_info "Evaluating Official Repository Packages..."
@@ -110,6 +112,8 @@ echo ""
 AUR_PACKAGES=(
     visual-studio-code-bin
     zen-browser-bin
+    waybar-git
+    wl-clip-persist
 )
 
 print_info "Evaluating Arch User Repository (AUR) Packages..."
