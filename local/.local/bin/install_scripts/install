@@ -81,10 +81,15 @@ OFFICIAL_PACKAGES=(
     hyprshot
     hypridle
     hyprlock
+    hyprsunset
     stow
     ttf-jetbrains-mono-nerd
     cliphist
     wl-clipboard
+    wtype
+    rofi-emoji
+    noto-fonts-emoji
+    xclip
 )
 
 print_info "Evaluating Official Repository Packages..."
@@ -111,7 +116,6 @@ echo ""
 # ==========================================
 AUR_PACKAGES=(
     visual-studio-code-bin
-    zen-browser-bin
     waybar-git
     wl-clip-persist
 )
