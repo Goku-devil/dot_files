@@ -66,6 +66,7 @@ tooltip label {
 #custom-launcher,
 #custom-vscode,
 #custom-todo,
+#custom-hyprsunset,
 #custom-clipboard,
 #custom-power {
     background-color: @base;
@@ -181,6 +182,26 @@ tooltip label {
 }
 #custom-power:hover {
     color: @maroon;
+}
+
+/* Styling when Eye Protection is OFF */
+#custom-hyprsunset.off {
+    color: #6c7086; 
+}
+
+#custom-hyprsunset.off:hover {
+    color: #cdd6f4;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Styling when Eye Protection is ON */
+#custom-hyprsunset.on {
+    color: #f9e2af; /* Warm yellow tint */
+    text-shadow: 0 0 5px rgba(249, 226, 175, 0.6); /* Subtle neon glow effect */
+}
+
+#custom-hyprsunset.on:hover {
+    background-color: rgba(249, 226, 175, 0.1);
 }
 
 /* Battery Blink Animation */
