@@ -90,6 +90,7 @@ OFFICIAL_PACKAGES=(
     rofi-emoji
     noto-fonts-emoji
     xclip
+    fastfetch
 )
 
 print_info "Evaluating Official Repository Packages..."
