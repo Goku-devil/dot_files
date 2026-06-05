@@ -1,0 +1,12 @@
+* {
+    /* Tokyo Night Palette */
+    bg-base:         #15161ee6; /* Crust equivalent (90% Opacity) */
+    bg-alt:          #1a1b26;   /* Base equivalent */
+    bg-surface:      #292e42;   /* Surface equivalent */
+    fg-base:         #c0caf5;   /* Text */
+    fg-muted:        #565f89;   /* Muted text */
+    
+    /* Accents */
+    accent-lavender: #bb9af7;   /* Purple Main Accent */
+    accent-sapphire: #7dcfff;   /* Cyan Secondary Accent */
+}

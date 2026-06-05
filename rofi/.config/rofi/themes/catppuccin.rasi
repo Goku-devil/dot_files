@@ -1,0 +1,12 @@
+* {
+    /* Official Catppuccin Mocha Palette */
+    bg-base:         #11111be6; /* Crust (90% Opacity) */
+    bg-alt:          #1e1e2e;   /* Base */
+    bg-surface:      #313244;   /* Surface 0 */
+    fg-base:         #cdd6f4;   /* Text */
+    fg-muted:        #6c7086;   /* Overlay 0 */
+    
+    /* Accents */
+    accent-lavender: #b4befe;   /* Lavender */
+    accent-sapphire: #74c7ec;   /* Sapphire */
+}

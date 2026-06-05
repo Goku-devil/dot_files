@@ -1,0 +1,12 @@
+* {
+    /* Evergreen (Everforest Dark) Palette */
+    bg-base:         #232a2ee6; /* Crust equivalent (90% Opacity) */
+    bg-alt:          #2d353b;   /* Base equivalent */
+    bg-surface:      #343f44;   /* Surface equivalent */
+    fg-base:         #d3c6aa;   /* Text */
+    fg-muted:        #859289;   /* Muted text */
+    
+    /* Accents */
+    accent-lavender: #a7c080;   /* Mapped to primary Green */
+    accent-sapphire: #7fbbb3;   /* Mapped to secondary Blue/Aqua */
+}

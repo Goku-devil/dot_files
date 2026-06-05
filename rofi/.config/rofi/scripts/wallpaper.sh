@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
-# --- Configuration ---
-WALLPAPER_DIR="$HOME/Wallpapers/walls-catppuccin-mocha"
+# --- 1. Read Current Theme State ---
+THEME=$(cat ~/.config/hypr/.theme_state 2>/dev/null || echo "catppuccin")
+
+# --- 2. Dynamic Directory ---
+WALLPAPER_DIR="$HOME/Wallpapers/$THEME"
 
 if [ ! -d "$WALLPAPER_DIR" ]; then
     notify-send "Wallpaper Picker" "Error: Directory $WALLPAPER_DIR not found."
     exit 1
 fi
 
-# --- Generate Rofi Menu with Previews ---
+# --- 3. Generate Rofi Menu with Previews ---
 get_wallpapers() {
     for file in "$WALLPAPER_DIR"/*.{jpg,jpeg,png,gif,webp}; do
         [ -e "$file" ] || continue
@@ -18,72 +21,67 @@ get_wallpapers() {
     done
 }
 
-# --- Rofi Grid Layout (Catppuccin Mocha - Blue Tone) ---
+# --- 4. Rofi Horizontal Gallery Layout ---
+# --- 4. Rofi Grid Gallery Layout ---
 ROFI_THEME='
+@import "~/.config/rofi/colors.rasi"
+
 * {
-    /* Core mocha colors */
-    bg-base: #1e1e2e;
-    bg-mantle: #181825;
-    bg-surface: #313244;
-    fg-text: #cdd6f4;
-    
-    /* BLUE ACCENT */
-    accent-blue: #89b4fa;
-    
     background-color: transparent;
-    text-color: @fg-text;
-    font: "JetBrainsMono Nerd Font 11";
+    text-color: @fg-base;
+    font: "JetBrainsMono Nerd Font 10"; /* Slightly smaller font to help long names */
 }
 window {
-    width: 820px; 
+    width: 1000px; 
     background-color: @bg-base;
     border: 2px solid;
-    border-color: @accent-blue; /* Blue border */
-    border-radius: 12px;
-    padding: 15px;
+    border-color: @accent-lavender; 
+    border-radius: 16px;
+    padding: 20px;
 }
 inputbar {
-    background-color: @bg-mantle;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin: 0px 0px 15px 0px;
+    background-color: @bg-alt;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin: 0px 0px 20px 0px;
 }
 prompt {
-    text-color: @accent-blue; /* Blue prompt icon/text */
+    text-color: @accent-lavender;
     font: "JetBrainsMono Nerd Font Bold 12";
-    margin: 0px 10px 0px 0px;
+    margin: 0px 15px 0px 0px;
 }
 entry {
     placeholder: "Search Wallpapers...";
-    placeholder-color: #a6adc8;
+    placeholder-color: @fg-muted;
+    text-color: @fg-base;
 }
 listview {
-    columns: 3;
-    lines: 2;
-    spacing: 15px;
-    fixed-columns: true;
+    columns: 4;          /* Force exactly 4 columns across */
+    lines: 1;            /* Force 1 row down */
+    spacing: 20px;
+    fixed-columns: true; /* STRICT RULE: Do not let long text stretch the box */
+    fixed-height: true;
 }
 element {
     orientation: vertical;
-    padding: 10px;
-    border-radius: 2px;
+    padding: 15px;
+    border-radius: 12px;
 }
 element selected {
     background-color: @bg-surface;
-    border: 1px solid;
-    border-color: @accent-blue; /* Blue highlight border */
+    border: 2px solid;
+    border-color: @accent-lavender;
 }
 element-icon {
-    size: 200px;
+    size: 180px;         /* Scaled down slightly to fit the strict columns */
     cursor: pointer;
     horizontal-align: 0.5;
 }
 element-text {
     horizontal-align: 0.5;
-    margin: 5px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
 }'
-
-# Pipe the formatted list into rofi
+# --- 5. Launch Rofi ---
 SELECTED=$(get_wallpapers | rofi -dmenu -i -p "󰸉 Wallpapers" -show-icons -theme-str "$ROFI_THEME")
 
 if [ -z "$SELECTED" ]; then
@@ -92,7 +90,7 @@ fi
 
 WALLPAPER_PATH="$WALLPAPER_DIR/$SELECTED"
 
-# --- Apply Wallpaper ---
+# --- 6. Apply Wallpaper ---
 if ! pgrep -x "awww-daemon" > /dev/null; then
     awww-daemon &
     sleep 0.5

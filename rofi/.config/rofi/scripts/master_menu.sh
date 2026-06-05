@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Initialize the starting state
@@ -16,8 +17,10 @@ while true; do
         MENU_CODE="󰨞  VS Code"
         MENU_POWER="⏻  Power Options"
         MENU_WALLPAPER="󰸉  Wallpaper" 
+        MENU_THEME="󰔎  Themes"
 
-        MAIN_OPTIONS="$MENU_APPS\n$MENU_WEB\n$MENU_KEYS\n$MENU_WALLPAPER\n$MENU_TERM\n$MENU_CODE\n$MENU_POWER"
+        # Added MENU_THEME to the list
+        MAIN_OPTIONS="$MENU_APPS\n$MENU_WEB\n$MENU_KEYS\n$MENU_WALLPAPER\n$MENU_THEME\n$MENU_TERM\n$MENU_CODE\n$MENU_POWER"
         
         # Width shrunk to 350px
         CHOICE=$(echo -e "$MAIN_OPTIONS" | rofi -dmenu -i -p "Dashboard:" -theme-str 'window {width: 350px;}')
@@ -37,6 +40,7 @@ while true; do
             "$MENU_KEYS") MENU_STATE="keys" ;;
             "$MENU_POWER") MENU_STATE="power" ;;
             "$MENU_WALLPAPER") MENU_STATE="wallpaper";;
+            "$MENU_THEME") MENU_STATE="theme";;
             *) exit 0 ;;
         esac
 
@@ -46,11 +50,9 @@ while true; do
     elif [[ "$MENU_STATE" == "web" ]]; then
         WEB_OPTIONS="󰧑  Gemini\n  YouTube\n󰊫  Gmail\n  WhatsApp\n  GitHub\n  LinkedIn\n󰿎  Crunchyroll"
         
-        # Width shrunk to 350px
         CHOICE=$(echo -e "$WEB_OPTIONS" | rofi -dmenu -i -p "Web Apps:" -theme-str 'window {width: 350px;}')
         ROFI_EXIT=$?
 
-        # If user presses Escape, return to main
         if [[ $ROFI_EXIT -eq 1 ]]; then
             MENU_STATE="main"
             continue
@@ -71,29 +73,22 @@ while true; do
     # 3. KEYBINDS SUB-MENU
     # ==========================================
     elif [[ "$MENU_STATE" == "keys" ]]; then
-        # Dynamically matches your actual Lua file configurations
         KEY_OPTIONS=" Open Config\n + 󰌑 : Terminal\n + Space : Menu\n + B : Browser\n + F : Files\n + C : Close Window\n + V : Toggle Floating\n + 󰘶 + S : Screenshot"
         
-        # Width set to 320px for content clearance
         CHOICE=$(echo -e "$KEY_OPTIONS" | rofi -dmenu -i -p "Shortcuts:" -theme-str 'window {width: 320px;}')
         ROFI_EXIT=$?
 
-        # If user presses Escape, return to main
         if [[ $ROFI_EXIT -eq 1 ]]; then
             MENU_STATE="main"
             continue
         fi
         
-        # Handle execution actions inside the keybinds menu
         case "$CHOICE" in
             "Open Config")
-                # Spawns a terminal to directly edit your Lua bindings
-                # Swappable with code, nano, or micro depending on choice
                 kitty nvim ~/.config/hypr/modules/keybinds.lua &
                 exit 0;
                 ;;
             *) 
-                # Hitting enter on a read-only shortcut listing cleanly exits out
                 exit 0 
                 ;;
         esac
@@ -104,11 +99,9 @@ while true; do
     elif [[ "$MENU_STATE" == "power" ]]; then
         PWR_OPTIONS="  Lock\n󰍃  Logout\n  Reboot\n  Shutdown"
         
-        # Width shrunk to 350px
         CHOICE=$(echo -e "$PWR_OPTIONS" | rofi -dmenu -i -p "System:" -theme-str 'window {width: 350px;}')
         ROFI_EXIT=$?
 
-        # If user presses Escape, return to main
         if [[ $ROFI_EXIT -eq 1 ]]; then
             MENU_STATE="main"
             continue
@@ -126,10 +119,31 @@ while true; do
     # 5. WALLPAPER PICKER
     # ==========================================
     elif [[ "$MENU_STATE" == "wallpaper" ]]; then
-        ~/.local/bin/wallpaper.sh
-        
-        # Exit out of the dashboard completely once the wallpaper script is launched
+        ~/.config/rofi/scripts/wallpaper.sh
         exit 0
+
+    # ==========================================
+    # 6. THEMES SUB-MENU
+    # ==========================================
+    elif [[ "$MENU_STATE" == "theme" ]]; then
+        THEME_OPTIONS="󰄛  Catppuccin Mocha\n󰐊  Evergreen (Everforest)\n󰏘  Tokyo Night"
+        
+        CHOICE=$(echo -e "$THEME_OPTIONS" | rofi -dmenu -i -p "Select Theme:" -theme-str 'window {width: 350px;}')
+        ROFI_EXIT=$?
+
+        # If user presses Escape, return to main
+        if [[ $ROFI_EXIT -eq 1 ]]; then
+            MENU_STATE="main"
+            continue
+        fi
+
+        # Pass the selection directly to your master apply engine
+        case "$CHOICE" in
+            *Catppuccin*) ~/.config/hypr/scripts/apply_theme.sh "catppuccin" & exit 0 ;;
+            *Evergreen*)  ~/.config/hypr/scripts/apply_theme.sh "evergreen" & exit 0 ;;
+            *Tokyo*)      ~/.config/hypr/scripts/apply_theme.sh "tokyonight" & exit 0 ;;
+            *) exit 0 ;;
+        esac
     fi
 
 done
