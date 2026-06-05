@@ -18,9 +18,8 @@ ln -sf ~/.config/wlogout/themes/${theme}.css ~/.config/wlogout/style.css
 pkill -9 waybar
 sleep 0.2
 waybar > /dev/null 2>&1 &
-swww img ~/Pictures/Wallpapers/${theme}.png --transition-type wipe
+awww img ~/Wallpapers/${theme}/${theme}.png --transition-type wipe
 
 # 4. Tell Hyprland to reload (This triggers Lua to safely read the new state)
 hyprctl reload
-
 notify-send "Theme Switched" "${theme^}"
