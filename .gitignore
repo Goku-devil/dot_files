@@ -1,1 +1,3 @@
 lazy-lock.json
+.theme_state
+waybar/.config/waybar/style.css
