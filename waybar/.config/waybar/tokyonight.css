@@ -1,0 +1,28 @@
+/* =======================================
+   Tokyo Night Palette mapped to Catppuccin vars
+   ======================================= */
+@define-color base   #1a1b26;
+@define-color mantle #16161e;
+@define-color crust  #15161e;
+
+@define-color text     #c0caf5;
+@define-color subtext0 #a9b1d6;
+@define-color subtext1 #9aa5ce;
+
+@define-color surface0 #292e42;
+@define-color surface1 #414868;
+@define-color surface2 #565f89;
+
+/* Accents mapped to match your layout semantic meanings */
+@define-color blue      #7aa2f7;
+@define-color lavender  #9d7cd8; /* Mapped to light purple */
+@define-color sapphire  #7dcfff; /* Mapped to cyan */
+@define-color peach     #ff9e64; /* Mapped to orange */
+@define-color maroon    #f7768e; /* Mapped to dark pink/red */
+@define-color red       #f7768e;
+@define-color mauve     #bb9af7; /* Mapped to primary purple */
+@define-color green     #9ece6a;
+@define-color yellow    #e0af68;
+
+/* Import the layout */
+@import "base.css";
