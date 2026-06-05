@@ -1,6 +1,2 @@
 lazy-lock.json
 .theme_state
-waybar/.config/waybar/style.css
-rofi/.config/rofi/colors.rasi
-kitty/.config/kitty/theme.conf
-wlogout/.config/wlogout/style.css
