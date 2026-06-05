@@ -1,0 +1,40 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    font-family: "JetBrainsMono Nerd Font", "Cantarell", sans-serif;
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+window {
+    background-color: rgba(26, 27, 38, 0.6); /* Tokyo Night Base */
+}
+
+button {
+    color: #c0caf5;
+    background-color: rgba(41, 46, 66, 0.2); 
+    border: 2px solid transparent;
+    border-radius: 24px;
+    font-size: 70px;
+    margin: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    animation: fadein 0.4s ease-in-out;
+    transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                background-size 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+button:hover {
+    background-color: rgba(187, 154, 247, 0.15); /* Purple 15% */
+    border: 2px solid #bb9af7;
+    background-size: 30%;
+    outline: none;
+}
+
+button:focus { outline: none; }
+

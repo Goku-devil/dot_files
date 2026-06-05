@@ -1,0 +1,41 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    font-family: "JetBrainsMono Nerd Font", "Cantarell", sans-serif;
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+window {
+    background-color: rgba(30, 30, 46, 0.6); /* Mocha Base */
+}
+
+button {
+    color: #cdd6f4;
+    background-color: rgba(49, 50, 68, 0.2); 
+    border: 2px solid transparent;
+    border-radius: 24px;
+    margin: 30px;
+    font-size: 70px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    animation: fadein 0.4s ease-in-out;
+    transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                background-size 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+button:hover {
+    background-color: rgba(203, 166, 247, 0.15); /* Mauve 15% */
+    border: 2px solid #cba6f7;
+    background-size: 30%;
+    outline: none;
+}
+
+button:focus { outline: none; }
+
+
