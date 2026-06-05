@@ -56,3 +56,13 @@ hl.window_rule({
     center = true,
     rounding = 0 -- Adjust this number for more/less curve
 })
+
+-- YouTube / Picture-in-Picture window rule
+hl.window_rule({
+    name = "youtube-pip",
+    match = { title = "^(Picture(-| )in(-| )[Pp]icture)$" },
+    float = true,
+    pin = true, -- Pins the window to all workspaces
+    size = "25% 25%", -- Optional: adjust to your preferred size
+    move = "100%-w-20 100%-h-20" -- Optional: moves to bottom right corner
+})
