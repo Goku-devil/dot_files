@@ -1,0 +1,11 @@
+@define-color noti-border-color rgba(211, 198, 170, 0.15);
+@define-color noti-bg rgba(45, 53, 59, 0.7);
+@define-color noti-bg-hover-alt rgba(52, 63, 68, 0.9);
+@define-color noti-bg-alt rgba(35, 42, 46, 0.7);
+@define-color noti-fg #d3c6aa;
+@define-color noti-bg-hover rgba(52, 63, 68, 0.8);
+@define-color noti-bg-focus rgba(52, 63, 68, 0.8);
+@define-color noti-close-bg rgba(255, 255, 255, 0.05);
+@define-color noti-close-bg-hover rgba(230, 126, 128, 0.8);
+@define-color noti-urgent rgba(230, 126, 128, 0.8);
+@define-color bg-selected #a7c080;

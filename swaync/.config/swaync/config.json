@@ -2,51 +2,132 @@
   "$schema": "/etc/xdg/swaync/configSchema.json",
   "positionX": "right",
   "positionY": "top",
-  "layer": "overlay",
-  "control-center-layer": "top",
-  "layer-shell": true,
-  "cssPriority": "application",
-  "control-center-margin-top": 8,
-  "control-center-margin-bottom": 8,
-  "control-center-margin-right": 8,
-  "control-center-margin-left": 8,
-  "notification-2fa-action": true,
-  "notification-inline-replies": false,
-  "notification-icon-size": 64,
-  "notification-body-image-height": 100,
-  "notification-body-image-width": 200,
-  "timeout": 10,
-  "timeout-low": 5,
+  "control-center-margin-top": 2,
+  "control-center-margin-bottom": 2,
+  "control-center-margin-right": 1,
+  "control-center-margin-left": 0,
+  "notification-icon-size": 48,
+  "notification-body-image-height": 160,
+  "notification-body-image-width": 90,
+  "timeout": 6,
+  "timeout-low": 4,
   "timeout-critical": 0,
   "fit-to-screen": true,
-  "relative-timestamps": true,
   "control-center-width": 380,
-  "control-center-height": 860,
-  "notification-window-width": 380,
+  "notification-window-width": 366,
   "keyboard-shortcuts": true,
   "image-visibility": "when-available",
-  "transition-length": 200,
+  "transition-time": 100,
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
+  "scripts": {
+    "play-sound": {
+      "exec": "paplay $HOME/.config/swaync/notification.ogg",
+      "run-on": "receive"
+    }
+  },
+  "notification-visibility": {
+    "example-name": {
+      "state": "muted",
+      "urgency": "Low",
+      "app-name": "Spotify"
+    }
+  },
   "widgets": [
+    "label",
+    "menubar",
+    "buttons-grid",
+    "volume",
+    "mpris",
     "title",
     "dnd",
-    "mpris",
     "notifications"
   ],
   "widget-config": {
     "title": {
       "text": "Notifications",
       "clear-all-button": true,
-      "button-text": "󰎟 Clear All"
+      "button-text": "Clear All"
     },
     "dnd": {
       "text": "Do Not Disturb"
     },
+    "label": {
+      "max-lines": 1,
+      "text": "Control Center"
+    },
     "mpris": {
       "image-size": 96,
-      "image-radius": 12
+      "image-radius": 6
+    },
+    "backlight": {
+      "label": "󰃠",
+      "device": "intel_backlight",
+      "min": 10
+    },
+    "backlight#KB": {
+      "label": " ",
+      "device": "asus::kbd_backlight",
+      "subsystem": "leds"
+    },
+    "volume": {
+      "label": ""
+    },
+    "menubar": {
+      "menu#screenshot-buttons": {
+        "label": "",
+        "position": "left",
+        "actions": [
+          { "label": "󰹑   Entire screen", "command": "swaync-client -cp && sleep 1 && hyprshot -m output" },
+          { "label": "󰆞   Select a region", "command": "swaync-client -cp && sleep 1 && hyprshot -m region" },
+          { "label": "   Screenshot menu", "command": "swaync-client -cp && rofi-screenshot" },
+          { "label": "   Open folder", "command": "dolphin $HYPRSHOT_DIR" }
+        ]
+      },
+      "menu#screencast-buttons": {
+        "label": "",
+        "position": "left",
+        "actions": [
+          { "label": "󰹑   Entire screen", "command": "swaync-client -cp && sleep 1 && recording.sh toggle fullscreen" },
+          { "label": "󰆞   Select a region", "command": "swaync-client -cp && sleep 1 && recording.sh toggle region" },
+          { "label": "   Stop", "command": "swaync-client -cp && recording.sh stop" },
+          { "label": "   Open folder", "command": "dolphin $XDG_VIDEOS_DIR/Screencasts" }
+        ]
+      },
+      "menu#eye-protection": {
+        "label": "",
+        "position": "right",
+        "actions": [
+          {
+            "label": "   Enable Eye Protection",
+            "command": "hyprsunset -t 4000"
+          },
+          {
+            "label": "   Disable Eye Protection",
+            "command": "pkill -x hyprsunset"
+          }
+        ]
+      },
+      "menu#power-buttons": {
+        "label": "",
+        "position": "right",
+        "actions": [
+          { "label": "󰜉   Reboot", "command": "systemctl reboot" },
+          { "label": "   Lock", "command": "hyprlock" },
+          { "label": "󰍃   Logout", "command": "hyprctl dispatch exit" },
+          { "label": "   Shut down", "command": "systemctl poweroff" }
+        ]
+      }
+    },
+    "buttons-grid": {
+      "actions": [
+        { "label": "󰨞", "command": "code" },
+        { "label": "", "command": "dolphin" },
+        { "label": "", "command": "kitty" },
+        { "label": "", "command": "rofi -show drun" },
+        { "label": "", "command": "firefox" }
+      ]
     }
   }
 }
