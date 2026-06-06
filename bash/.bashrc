@@ -29,25 +29,48 @@ alias rm='rm -i'
 alias cl='clear'
 
 # ==============================================================================
-# CUSTOM BOXED PROMPT (Diamond Edition)
+# CUSTOM BOXED PROMPT (TrueColor Theme Engine Integration)
 # ==============================================================================
-_mocha_prompt() {
-    # ANSI escape color declarations (Catppuccin Mocha TrueColor)
-    local surface1="\[\033[38;2;69;71;90m\]"
-    local sapphire="\[\033[38;2;116;199;236m\]"
-    local blue="\[\033[38;2;137;180;250m\]"
-    local lavender="\[\033[38;2;180;190;254m\]"
-    local rosewater="\[\033[38;2;245;224;220m\]"
-    local text="\[\033[38;2;205;214;244m\]"
+_theme_prompt() {
+    # Read the current theme from your Hyprland engine (default to catppuccin)
+    local theme_state=$(cat ~/.config/hypr/.theme_state 2>/dev/null || echo "catppuccin")
+
+    # 1. Catppuccin Mocha Colors (Your Original)
+    local frame="\[\033[38;2;69;71;90m\]"        # surface1
+    local accent1="\[\033[38;2;116;199;236m\]"    # sapphire
+    local accent2="\[\033[38;2;137;180;250m\]"    # blue
+    local accent3="\[\033[38;2;180;190;254m\]"    # lavender
+    local text="\[\033[38;2;205;214;244m\]"       # text
+    local prompt_col="\[\033[38;2;245;224;220m\]" # rosewater
+
+    # 2. Evergreen Colors (Warm, Forest Tones)
+    if [[ "$theme_state" == "evergreen" ]]; then
+        frame="\[\033[38;2;133;146;137m\]"        # Muted Grey-Green (#859289)
+        accent1="\[\033[38;2;167;192;128m\]"      # Soft Green (#a7c080)
+        accent2="\[\033[38;2;127;187;179m\]"      # Soft Blue (#7fbbb3)
+        accent3="\[\033[38;2;219;188;127m\]"      # Soft Yellow (#dbbc7f)
+        text="\[\033[38;2;211;198;170m\]"         # Warm Text (#d3c6aa)
+        prompt_col="\[\033[38;2;230;126;128m\]"   # Soft Red (#e67e80)
+        
+    # 3. Tokyo Night Colors (Neon Cyberpunk)
+    elif [[ "$theme_state" == "tokyonight" ]]; then
+        frame="\[\033[38;2;86;95;137m\]"          # Muted Purple-Grey (#565f89)
+        accent1="\[\033[38;2;122;162;247m\]"      # Bright Blue (#7aa2f7)
+        accent2="\[\033[38;2;187;154;247m\]"      # Neon Purple (#bb9af7)
+        accent3="\[\033[38;2;158;206;106m\]"      # Bright Green (#9ece6a)
+        text="\[\033[38;2;192;202;245m\]"         # Cool Text (#c0caf5)
+        prompt_col="\[\033[38;2;247;118;142m\]"   # Neon Red (#f7768e)
+    fi
+
     local reset="\[\033[0m\]"
 
     # High-resolution Nerd Font structural symbols
     local arch_icon="󰣇 "
-    local split_sym=" @ "   # The diamond divider
+    local split_sym=" @ "
     local dir_icon="  "
     local prompt_sym="❯"
 
     # Build layout structure
-    PS1="${surface1}╭─(${sapphire}${arch_icon}${text}\u${blue}${split_sym}\h${surface1})─[${lavender}${dir_icon}\w${surface1}]\n${surface1}╰─${rosewater}${prompt_sym}${reset} "
+    PS1="${frame}╭─(${accent1}${arch_icon}${text}\u${accent2}${split_sym}\h${frame})─[${accent3}${dir_icon}\w${frame}]\n${frame}╰─${prompt_col}${prompt_sym}${reset} "
 }
-_mocha_prompt
+_theme_prompt
