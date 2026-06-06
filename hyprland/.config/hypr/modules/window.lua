@@ -66,3 +66,25 @@ hl.window_rule({
     size = "25% 25%", -- Optional: adjust to your preferred size
     move = "100%-w-20 100%-h-20" -- Optional: moves to bottom right corner
 })
+
+-- =========================================
+-- TRANSPARENCY / OPACITY RULES
+-- =========================================
+
+-- Make Kitty transparent
+hl.window_rule({
+    name  = "transparent-kitty",
+    match = { class = "^(kitty)$" },
+    
+    -- Format is: "active_opacity inactive_opacity"
+    -- 0.85 is a great sweet spot for readability + blur
+    opacity = "0.85 0.85", 
+})
+
+-- Make your Todo app transparent
+hl.window_rule({
+    name  = "transparent-todo",
+    match = { title = "^(Minimal Todo)$" },
+    
+    opacity = "0.85 0.85", 
+})

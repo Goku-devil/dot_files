@@ -7,6 +7,7 @@ require("modules.animation")
 require("modules.input")
 require("modules.window")
 require("modules.theme_switcher")
+require("modules.layerrule")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -36,3 +37,5 @@ hl.config({
         disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })
+
+
