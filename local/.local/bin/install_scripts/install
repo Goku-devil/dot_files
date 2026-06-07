@@ -73,24 +73,25 @@ echo ""
 # 2. Official Arch Packages
 # ==========================================
 OFFICIAL_PACKAGES=(
-    rofi
-    waybar
-    wlogout
-    neovim
-    swaync
-    hyprshot
-    hypridle
-    hyprlock
-    hyprsunset
-    stow
-    ttf-jetbrains-mono-nerd
-    cliphist
-    wl-clipboard
-    wtype
-    rofi-emoji
-    noto-fonts-emoji
-    xclip
-    fastfetch
+    rofi  # Application launcher
+    waybar # Status bar for Wayland
+    wlogout # Logout utility for Wayland
+    neovim # Terminal-based text editor
+    swaync # Notification daemon for Wayland
+    hyprshot # Screenshot utility for Wayland
+    hypridle # Idle management for Wayland
+    hyprlock # Screen locker for Wayland
+    hyprsunset # Sunset/sunrise-based theming for Wayland
+    stow # Dotfiles management
+    ttf-jetbrains-mono-nerd # Programming font with icons
+    cliphist # Clipboard manager
+    wl-clipboard # Clipboard utilities for Wayland
+    wtype # Simulate keyboard input in Wayland
+    rofi-emoji # Emoji picker for Rofi
+    noto-fonts-emoji # Emoji font
+    xclip # Clipboard utility for X11 (some tools may still require it)
+    fastfetch # System information tool
+    dolphin # File manager (optional, can be replaced with a terminal file manager if preferred)
 )
 
 print_info "Evaluating Official Repository Packages..."
