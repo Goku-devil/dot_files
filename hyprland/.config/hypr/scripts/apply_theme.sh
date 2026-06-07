@@ -9,7 +9,7 @@ fi
 echo "$theme" > ~/.config/hypr/.theme_state
 
 # 2. Swap Symlinks
-ln -sf ~/.config/waybar/${theme}.css ~/.config/waybar/style.css
+ln -sf ~/.config/waybar/themes/${theme}.css ~/.config/waybar/style.css
 ln -sf ~/.config/rofi/themes/${theme}.rasi ~/.config/rofi/colors.rasi
 ln -sf ~/.config/swaync/themes/${theme}.css ~/.config/swaync/theme.css
 ln -sf ~/.config/kitty/themes/${theme}.conf ~/.config/kitty/theme.conf

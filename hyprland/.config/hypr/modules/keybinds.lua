@@ -1,6 +1,6 @@
 -- Set programs that you use
 local terminal    = "kitty"
-local fileManager = "nautilus"
+local fileManager = "dolphin"
 local menu        = "~/.config/rofi/scripts/master_menu.sh"
 local browser = "firefox"
 
