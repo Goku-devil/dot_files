@@ -110,7 +110,8 @@
         "format-wifi": "  {essid}",
         "format-ethernet": "󰈀  Wired",
         "format-disconnected": "󰈂 Disconnected",
-        "tooltip-format": "{ifname} via {gwaddr}"
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "on-click": "~/.local/bin/custom-wifi.sh"
     },
 
     "custom/power": {
