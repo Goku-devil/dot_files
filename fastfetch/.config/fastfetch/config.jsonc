@@ -118,9 +118,9 @@
             "keyColor": "35"
         },
         "break",
-	{
-	    "type": "colors",
-	    "symbol": "circle"
-	}
+        {
+            "type": "colors",
+            "symbol": "circle"
+        }
     ]
 }
