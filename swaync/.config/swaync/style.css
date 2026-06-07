@@ -1,14 +1,14 @@
-@define-color noti-border-color rgba(205, 214, 244, 0.15);
-@define-color noti-bg rgba(30, 30, 46, 0.7);
-@define-color noti-bg-hover-alt rgba(49, 50, 68, 0.9);
-@define-color noti-bg-alt rgba(24, 24, 37, 0.7);
-@define-color noti-fg #cdd6f4;
-@define-color noti-bg-hover rgba(49, 50, 68, 0.8);
-@define-color noti-bg-focus rgba(49, 50, 68, 0.8);
+@define-color noti-border-color rgba(192, 202, 245, 0.15);
+@define-color noti-bg rgba(26, 27, 38, 0.7);
+@define-color noti-bg-hover-alt rgba(41, 46, 66, 0.9);
+@define-color noti-bg-alt rgba(21, 22, 30, 0.7);
+@define-color noti-fg #c0caf5;
+@define-color noti-bg-hover rgba(41, 46, 66, 0.8);
+@define-color noti-bg-focus rgba(41, 46, 66, 0.8);
 @define-color noti-close-bg rgba(255, 255, 255, 0.05);
-@define-color noti-close-bg-hover rgba(243, 139, 168, 0.8);
-@define-color noti-urgent rgba(243, 139, 168, 0.8);
-@define-color bg-selected #89b4fa;
+@define-color noti-close-bg-hover rgba(247, 118, 142, 0.8);
+@define-color noti-urgent rgba(247, 118, 142, 0.8);
+@define-color bg-selected #bb9af7;
 *{
   font-family: "JetBrainsMono Nerd Font", sans-serif;
   color: @noti-fg;

@@ -79,20 +79,44 @@
         "label": "",
         "position": "left",
         "actions": [
-          { "label": "󰹑   Entire screen", "command": "swaync-client -cp && sleep 1 && hyprshot -m output" },
-          { "label": "󰆞   Select a region", "command": "swaync-client -cp && sleep 1 && hyprshot -m region" },
-          { "label": "   Screenshot menu", "command": "swaync-client -cp && rofi-screenshot" },
-          { "label": "   Open folder", "command": "dolphin $HYPRSHOT_DIR" }
+          {
+            "label": "󰹑   Entire screen",
+            "command": "swaync-client -cp && sleep 1 && hyprshot -m output"
+          },
+          {
+            "label": "󰆞   Select a region",
+            "command": "swaync-client -cp && sleep 1 && hyprshot -m region"
+          },
+          {
+            "label": "   Screenshot menu",
+            "command": "swaync-client -cp && rofi-screenshot"
+          },
+          {
+            "label": "   Open folder",
+            "command": "dolphin $HYPRSHOT_DIR"
+          }
         ]
       },
       "menu#screencast-buttons": {
         "label": "",
         "position": "left",
         "actions": [
-          { "label": "󰹑   Entire screen", "command": "swaync-client -cp && sleep 1 && recording.sh toggle fullscreen" },
-          { "label": "󰆞   Select a region", "command": "swaync-client -cp && sleep 1 && recording.sh toggle region" },
-          { "label": "   Stop", "command": "swaync-client -cp && recording.sh stop" },
-          { "label": "   Open folder", "command": "dolphin $XDG_VIDEOS_DIR/Screencasts" }
+          {
+            "label": "󰹑   Entire screen",
+            "command": "swaync-client -cp && sleep 1 && recording.sh toggle fullscreen"
+          },
+          {
+            "label": "󰆞   Select a region",
+            "command": "swaync-client -cp && sleep 1 && recording.sh toggle region"
+          },
+          {
+            "label": "   Stop",
+            "command": "swaync-client -cp && recording.sh stop"
+          },
+          {
+            "label": "   Open folder",
+            "command": "dolphin $XDG_VIDEOS_DIR/Screencasts"
+          }
         ]
       },
       "menu#eye-protection": {
@@ -113,20 +137,47 @@
         "label": "",
         "position": "right",
         "actions": [
-          { "label": "󰜉   Reboot", "command": "systemctl reboot" },
-          { "label": "   Lock", "command": "hyprlock" },
-          { "label": "󰍃   Logout", "command": "hyprctl dispatch exit" },
-          { "label": "   Shut down", "command": "systemctl poweroff" }
+          {
+            "label": "󰜉   Reboot",
+            "command": "systemctl reboot"
+          },
+          {
+            "label": "   Lock",
+            "command": "hyprlock"
+          },
+          {
+            "label": "󰍃   Logout",
+            "command": "hyprctl dispatch exit"
+          },
+          {
+            "label": "   Shut down",
+            "command": "systemctl poweroff"
+          }
         ]
       }
     },
     "buttons-grid": {
       "actions": [
-        { "label": "󰨞", "command": "code" },
-        { "label": "", "command": "dolphin" },
-        { "label": "", "command": "kitty" },
-        { "label": "", "command": "rofi -show drun" },
-        { "label": "", "command": "firefox" }
+        {
+          "label": "󰨞",
+          "command": "code"
+        },
+        {
+          "label": "",
+          "command": "dolphin"
+        },
+        {
+          "label": "",
+          "command": "kitty"
+        },
+        {
+          "label": "",
+          "command": "rofi -show drun"
+        },
+        {
+          "label": "",
+          "command": "firefox"
+        }
       ]
     }
   }
