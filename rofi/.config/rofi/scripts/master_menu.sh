@@ -23,7 +23,7 @@ while true; do
         MAIN_OPTIONS="$MENU_APPS\n$MENU_WEB\n$MENU_KEYS\n$MENU_WALLPAPER\n$MENU_THEME\n$MENU_TERM\n$MENU_CODE\n$MENU_POWER"
         
         # Width shrunk to 350px
-        CHOICE=$(echo -e "$MAIN_OPTIONS" | rofi -dmenu -i -p "Dashboard:" -theme-str 'window {width: 350px;}')
+        CHOICE=$(echo -e "$MAIN_OPTIONS" | rofi -dmenu -i -p "Dashboard:" -theme-str 'window {width: 330px;}')
         
         # Capture the exit code (1 means user pressed Escape)
         ROFI_EXIT=$?

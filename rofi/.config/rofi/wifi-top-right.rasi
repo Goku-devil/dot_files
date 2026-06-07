@@ -1,0 +1,89 @@
+/* wifi-top-right.rasi - Adapted for your custom themes folder */
+@import "~/.config/rofi/colors.rasi"
+
+* {
+    font: "JetBrainsMono Nerd Font 10";
+    background-color: transparent;
+    text-color: @fg-base;
+}
+
+window {
+    location: north east;  
+    anchor: north east;
+    x-offset: -10px;       
+    y-offset: 10px;        
+    width: 380px;
+    border: 1px;           
+    border-color: @bg-surface; 
+    background-color: @bg-base;
+    border-radius: 6px;    
+}
+
+mainbox {
+    spacing: 0px;
+    children: [ inputbar, listview, message ];
+}
+
+inputbar {
+    padding: 12px;
+    background-color: @bg-alt; 
+    children: [ prompt, entry ];
+    border: 0 0 1px 0;
+    border-color: @bg-base;
+}
+
+prompt {
+    text-color: @accent-sapphire; /* Using your secondary accent for the prompt */
+    font: "JetBrainsMono Nerd Font Bold 10";
+    margin: 0 10px 0 0;
+}
+
+entry {
+    placeholder: "Search Wi-Fi...";
+    placeholder-color: @fg-muted; 
+    cursor: text;
+}
+
+listview {
+    lines: 8;               
+    fixed-height: false;    
+    columns: 1;
+    scrollbar: false;
+    padding: 8px 5px;       
+    spacing: 4px;           
+}
+
+element {
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;        
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg-base;
+}
+
+element selected.normal {
+    background-color: @bg-surface;
+    text-color: @accent-lavender; /* Using your primary accent for selection */
+}
+
+element-text {
+    vertical-align: 0.5;
+    highlight: bold #a7c080; /* Hardcoded to your evergreen green just for search highlights */
+    cursor: inherit;
+}
+
+message {
+    padding: 10px 12px;
+    background-color: @bg-base;
+    border: 1px 0 0 0;
+    border-color: @bg-surface;
+}
+
+textbox {
+    text-color: @accent-lavender; /* Green speed stats */
+    font: "JetBrainsMono Nerd Font 9";
+    horizontal-align: 0.5;   
+}

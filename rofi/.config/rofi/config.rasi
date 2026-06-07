@@ -27,7 +27,7 @@ window {
     width: 650px;
     border: 2px solid;
     border-color: @accent-lavender;
-    border-radius: 8px;          /* Slightly rounder for a modern look */
+    border-radius: 2px;          
     background-color: @bg-base;
     padding: 18px;
 }
