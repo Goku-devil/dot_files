@@ -54,7 +54,7 @@ cd ~/.dotfiles
 ```bash
 cp -r ~/.dotfiles/hyprland/hypr/ ~/.config/hypr
 cp -r ~/.dotfiles/waybar/ ~/.config/waybar
-... and so on ...
+#... and so on ...
 ```
 
 2b. Install using `stow` (recommended for managing symlinks)
@@ -63,7 +63,7 @@ cp -r ~/.dotfiles/waybar/ ~/.config/waybar
 # from within ~/.dotfiles
 stow hyprland
 stow waybar
-... so on ...
+#... so on ...
 ```
 
 Notes
