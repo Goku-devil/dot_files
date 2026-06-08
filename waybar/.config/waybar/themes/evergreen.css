@@ -1,28 +1,72 @@
 /* =======================================
-   Evergreen (Everforest) Palette mapped to Catppuccin vars
+   Official Evergreen (Everforest) Palette
    ======================================= */
-@define-color base   #2d353b;
-@define-color mantle #272e33;
-@define-color crust  #232a2e;
+@define-color bg         #2b3339;
+@define-color bg-dim     #272e33;
+@define-color surface    #323c41;
+@define-color overlay    #3a454a;
+@define-color grey       #859289;
+@define-color fg         #d3c6aa;
 
-@define-color text     #d3c6aa;
-@define-color subtext0 #9da9a0;
-@define-color subtext1 #859289;
+@define-color red        #e67e80;
+@define-color orange     #e69875;
+@define-color yellow     #dbbc7f;
+@define-color green      #a7c080;
+@define-color aqua       #83c092;
+@define-color blue       #7fbbb3;
+@define-color purple     #d699b6;
 
-@define-color surface0 #343f44;
-@define-color surface1 #3d484d;
-@define-color surface2 #475258;
+/* =======================================
+   Compatibility Bridge for base.css
+   ======================================= */
+@define-color base       #2b3339; /* Maps to bg */
+@define-color mantle     #272e33; /* Maps to bg-dim */
+@define-color crust      #232a2e; /* Darkest bg */
+@define-color text       #d3c6aa; /* Maps to fg */
+@define-color subtext0   #859289; /* Maps to grey */
+@define-color subtext1   #d3c6aa; /* Maps to fg */
+@define-color surface0   #323c41; /* Maps to surface */
+@define-color surface1   #3a454a; /* Maps to overlay */
+@define-color surface2   #475258; /* Lighter overlay */
 
-/* Accents mapped to match your layout semantic meanings */
-@define-color blue      #7fbbb3;
-@define-color lavender  #d699b6; /* Mapped to soft pink/purple */
-@define-color sapphire  #83c092; /* Mapped to aqua */
-@define-color peach     #e69875; /* Mapped to orange */
-@define-color maroon    #e67e80; /* Mapped to coral */
-@define-color red       #e67e80;
-@define-color mauve     #d699b6; /* Mapped to purple/pink */
-@define-color green     #a7c080;
-@define-color yellow    #dbbc7f;
+@define-color blue       #7fbbb3; /* Maps to blue */
+@define-color lavender   #d699b6; /* Maps to purple */
+@define-color sapphire   #83c092; /* Maps to aqua */
+@define-color peach      #e69875; /* Maps to orange */
+@define-color maroon     #e67e80; /* Maps to red */
+@define-color red        #e67e80; /* Maps to red */
+@define-color mauve      #d699b6; /* Maps to purple */
+@define-color green      #a7c080; /* Maps to green */
+@define-color yellow     #dbbc7f; /* Maps to yellow */
 
 /* Import the layout */
 @import "base.css";
+
+/* =======================================
+   Theme-Specific Override: Neon Underline
+   (Using Authentic Evergreen Variables)
+   ======================================= */
+#workspaces, #clock, #memory, #battery, #pulseaudio, #network,
+#custom-notification, #custom-launcher, #custom-vscode, #custom-todo,
+#custom-hyprsunset, #custom-clipboard, #custom-power {
+    border-radius: 8px;
+}
+
+/* We use the signature Everforest Green for active elements here */
+#workspaces button.active { border-bottom: 3px solid @green; }
+#workspaces button.urgent { border-bottom: 3px solid @red; }
+
+#custom-launcher { border-bottom: 3px solid @aqua; }
+#clock { border-bottom: 3px solid @blue; }
+#custom-vscode { border-bottom: 3px solid @blue; }
+#memory { border-bottom: 3px solid @green; }
+#battery { border-bottom: 3px solid @green; }
+#battery.warning { border-bottom: 3px solid @orange; }
+#battery.critical:not(.charging) { border-bottom: 3px solid @red; }
+#custom-todo { border-bottom: 3px solid @yellow; }
+#custom-notification { border-bottom: 3px solid @orange; }
+#pulseaudio { border-bottom: 3px solid @aqua; }
+#pulseaudio.muted { border-bottom: 3px solid @grey; }
+#network { border-bottom: 3px solid @purple; }
+#network.disconnected { border-bottom: 3px solid @red; }
+#custom-power { border-bottom: 3px solid @red; }

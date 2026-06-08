@@ -1,0 +1,95 @@
+/* =======================================
+   Official Rosé Pine Palette
+   ======================================= */
+@define-color base       #191724;
+@define-color surface    #1f1d2e;
+@define-color overlay    #26233a;
+@define-color muted      #6e6a86;
+@define-color subtle     #908caa;
+@define-color text       #e0def4;
+@define-color love       #eb6f92;
+@define-color gold       #f6c177;
+@define-color rose       #ebbcba;
+@define-color pine       #31748f;
+@define-color foam       #9ccfd8;
+@define-color iris       #c4a7e7;
+
+/* =======================================
+   Compatibility Bridge for base.css
+   ======================================= */
+@define-color mantle #1f1d2e;
+@define-color crust  #21202e;
+@define-color subtext0 #908caa;
+@define-color subtext1 #e0def4;
+@define-color surface0 #26233a;
+@define-color surface1 #403d52;
+@define-color surface2 #524f67;
+
+@define-color blue      #9ccfd8; 
+@define-color lavender  #c4a7e7; 
+@define-color sapphire  #31748f; 
+@define-color peach     #ebbcba; 
+@define-color maroon    #eb6f92; 
+@define-color red       #eb6f92; 
+@define-color mauve     #c4a7e7; 
+@define-color green     #31748f; 
+@define-color yellow    #f6c177; 
+
+/* Import the layout */
+@import "base.css";
+/* =======================================
+   Theme-Specific Override: Neon Wireframe (Refined)
+   ======================================= */
+
+/* 1. Global Settings (Thinner Hollow Pills) */
+#workspaces, #clock, #memory, #battery, #pulseaudio, #network,
+#custom-notification, #custom-launcher, #custom-vscode, #custom-todo,
+#custom-hyprsunset, #custom-clipboard, #custom-power {
+    background-color: rgba(25, 23, 36, 0.4); 
+    border-radius: 20px; 
+    border: 1px solid @muted; 
+    margin: 5px 4px;
+    padding: 2px 14px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 2. Soft glow inside the pill on hover */
+#clock:hover, #memory:hover, #battery:hover, #pulseaudio:hover,
+#network:hover, #custom-notification:hover, #custom-launcher:hover,
+#custom-vscode:hover, #custom-todo:hover, #custom-power:hover {
+    background-color: rgba(38, 35, 58, 0.8); 
+}
+
+/* 3. Workspaces Layout */
+#workspaces { 
+    padding: 2px 8px; 
+    border-color: @overlay;
+}
+#workspaces button { 
+    color: @muted; 
+    padding: 0 4px; 
+    border-radius: 12px; 
+    background: transparent;
+}
+#workspaces button:hover { color: @text; }
+#workspaces button.active { 
+    color: @iris; 
+    text-shadow: 0px 0px 6px rgba(196, 167, 231, 0.5); 
+}
+#workspaces button.urgent { color: @love; }
+
+/* 4. Distinct Color Mapping for Modules */
+#custom-launcher { color: @foam; border-color: @foam; }
+#clock { color: @text; border-color: @subtle; }
+#custom-vscode { color: @iris; border-color: @iris; } 
+#memory { color: @pine; border-color: @pine; } /* Swapped to Teal */
+#battery { color: @pine; border-color: @pine; } 
+#battery.warning { color: @rose; border-color: @rose; }
+#battery.critical:not(.charging) { color: @love; border-color: @love; }
+#custom-todo { color: @rose; border-color: @rose; }
+#custom-notification { color: @gold; border-color: @gold; } /* Notification is now Gold/Yellow */
+#pulseaudio { color: @foam; border-color: @foam; }
+#pulseaudio.muted { color: @muted; border-color: @muted; }
+#network { color: @iris; border-color: @iris; }
+#network.disconnected { color: @love; border-color: @love; }
+#custom-power { color: @love; border-color: @love; }
