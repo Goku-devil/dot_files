@@ -89,6 +89,6 @@ hl.bind("SUPER + H", hl.dsp.exec_cmd("bash ~/.config/rofi/scripts/clipboard.sh")
 -- emoji menu
 hl.bind("SUPER + E",
     hl.dsp.exec_cmd(
-       "rofi -show emoji -emoji-format \"{emoji}\" -theme-str 'window {width: 60%;} listview {columns: 8; lines: 6;} element {padding: 5px 0px;} element-text {horizontal-align: 0.5;}'" 
+       "rofi -show emoji -emoji-format \"{emoji}\" -theme-str 'window {width: 60%;} listview {columns: 6; lines: 6;} element {padding: 5px 0px;} element-text {horizontal-align: 0.5;}'" 
     ))
 

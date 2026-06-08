@@ -27,7 +27,7 @@ hl.config({
 })
 
 -- 3. Keybinds to trigger the Bash engine
-local themes = { "catppuccin", "evergreen", "tokyonight" }
+local themes = { "catppuccin", "evergreen", "tokyonight", "rosepine", "nord" }
 local function get_next_theme(current)
     for i, v in ipairs(themes) do
         if v == current then
