@@ -1,6 +1,6 @@
 # ⚡ Dotfiles
 
-A curated collection of configuration files and scripts to set up a sleek, keyboard-focused Wayland-based Linux environment. These dotfiles provide defaults, themes, and helper scripts for a modern, minimal desktop tuned for productivity and aesthetics.
+Welcome to my personal dotfiles repository. This collection contains the configuration files and scripts I use to maintain a sleek, minimalist, and highly functional Linux environment. The setup is built around a modern Wayland compositor and relies on efficient, keyboard-centric tools tailored for development and everyday use.
 
 ## Key Components
 
@@ -40,7 +40,7 @@ The configurations favor a dark, minimalist aesthetic with subtle glow and accen
 
 ## Installation
 
-Important: Review individual configs before applying them. Back up your existing config files.
+_Important: Review individual configs before applying them. Back up your existing config files._
 
 1. Clone the repository
 
@@ -54,6 +54,7 @@ cd ~/.dotfiles
 ```bash
 cp -r ~/.dotfiles/hyprland/hypr/ ~/.config/hypr
 cp -r ~/.dotfiles/waybar/ ~/.config/waybar
+... and so on ...
 ```
 
 2b. Install using `stow` (recommended for managing symlinks)
@@ -62,6 +63,7 @@ cp -r ~/.dotfiles/waybar/ ~/.config/waybar
 # from within ~/.dotfiles
 stow hyprland
 stow waybar
+... so on ...
 ```
 
 Notes
@@ -77,4 +79,4 @@ Notes
 
 ---
 
-Created and maintained by Gokulraj A S
+Created and maintained by _Goku-devil_
