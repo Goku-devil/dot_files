@@ -14,6 +14,16 @@ Welcome to my personal dotfiles repository. This collection contains the configu
 - **Bash** — Shell configuration, aliases, and helper functions.
 - **Fastfetch** — Lightweight system info tool with custom presets. (https://github.com/fastfetch-cli/fastfetch)
 
+## Samples
+
+Here are a few screenshots from `asserts/show-case` showing the current look and feel of the setup.
+
+![Showcase 1](asserts/show-case/image.png)
+
+![Showcase 2](asserts/show-case/image%20copy.png)
+
+![Showcase 3](asserts/show-case/image%20copy%202.png)
+
 ## Repository Structure
 
 This repo groups configuration by app or service for easy deployment and customization.
@@ -21,6 +31,7 @@ This repo groups configuration by app or service for easy deployment and customi
 ```text
 .
 ├── asserts/        # Wallpapers and media assets
+│   ├── show-case/  # Example screenshots of the current config
 │   └── Wallpapers/ # Curated wallpaper sets
 ├── bash/           # Bash aliases, profile, and exports
 ├── fastfetch/      # Fastfetch presets
