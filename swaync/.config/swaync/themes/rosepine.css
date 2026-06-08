@@ -1,0 +1,11 @@
+@define-color noti-border-color rgba(224, 222, 244, 0.15); /* Text */
+@define-color noti-bg rgba(25, 23, 36, 0.7); /* Base */
+@define-color noti-bg-hover-alt rgba(38, 35, 58, 0.9); /* Overlay */
+@define-color noti-bg-alt rgba(31, 29, 46, 0.7); /* Surface */
+@define-color noti-fg #e0def4; /* Text */
+@define-color noti-bg-hover rgba(38, 35, 58, 0.8); /* Overlay */
+@define-color noti-bg-focus rgba(38, 35, 58, 0.8); /* Overlay */
+@define-color noti-close-bg rgba(255, 255, 255, 0.05); /* Keeps the subtle white glow */
+@define-color noti-close-bg-hover rgba(235, 111, 146, 0.8); /* Love / Red */
+@define-color noti-urgent rgba(235, 111, 146, 0.8); /* Love / Red */
+@define-color bg-selected #c4a7e7; /* Iris / Purple */

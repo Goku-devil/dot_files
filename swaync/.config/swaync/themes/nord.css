@@ -1,0 +1,14 @@
+@define-color noti-border-color rgba(216, 222, 233, 0.15); /* Snow Storm */
+@define-color noti-bg rgba(46, 52, 64, 0.7); /* Polar Night Base */
+@define-color noti-bg-hover-alt rgba(67, 76, 94, 0.9); /* Surface High */
+@define-color noti-bg-alt rgba(59, 66, 82, 0.7); /* Surface Low */
+@define-color noti-fg #d8dee9; /* Text */
+@define-color noti-bg-hover rgba(67, 76, 94, 0.8); /* Overlay */
+@define-color noti-bg-focus rgba(67, 76, 94, 0.8); /* Overlay */
+@define-color noti-close-bg rgba(255, 255, 255, 0.05);
+@define-color noti-close-bg-hover rgba(191, 97, 106, 0.8); /* Aurora Red */
+@define-color noti-urgent rgba(191, 97, 106, 0.8); /* Aurora Red */
+@define-color bg-selected #88c0d0; /* Frost Blue */
+
+/* Import the layout */
+@import "base.css";
