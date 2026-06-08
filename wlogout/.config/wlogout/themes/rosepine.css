@@ -1,0 +1,39 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    font-family: "JetBrainsMono Nerd Font", "Cantarell", sans-serif;
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+window {
+    background-color: rgba(25, 23, 36, 0.6); /* Rosé Pine Base */
+}
+
+button {
+    color: #e0def4; /* Text */
+    background-color: rgba(38, 35, 58, 0.2); /* Overlay 20% */
+    border: 2px solid transparent;
+    border-radius: 24px;
+    margin: 30px;
+    font-size: 70px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    animation: fadein 0.4s ease-in-out;
+    transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                background-size 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+button:hover {
+    background-color: rgba(196, 167, 231, 0.15); /* Iris 15% */
+    border: 2px solid #c4a7e7; /* Iris */
+    background-size: 30%;
+    outline: none;
+}
+
+button:focus { outline: none; }
