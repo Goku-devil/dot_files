@@ -1,0 +1,12 @@
+* {
+    /* Rosé Pine Palette */
+    bg-base:         #191724e6; /* Base (90% Opacity) */
+    bg-alt:          #1f1d2e;   /* Surface */
+    bg-surface:      #26233a;   /* Overlay */
+    fg-base:         #e0def4;   /* Text */
+    fg-muted:        #6e6a86;   /* Muted */
+    
+    /* Accents */
+    accent-lavender: #c4a7e7;   /* Iris */
+    accent-sapphire: #9ccfd8;   /* Foam */
+}

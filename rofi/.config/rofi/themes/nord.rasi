@@ -1,0 +1,12 @@
+* {
+    /* Nord Palette */
+    bg-base:         #2e3440e6; /* Base Slate (90% Opacity) */
+    bg-alt:          #3b4252;   /* Surface */
+    bg-surface:      #434c5e;   /* Overlay */
+    fg-base:         #d8dee9;   /* Snow Storm Text */
+    fg-muted:        #4c566a;   /* Muted Slate */
+    
+    /* Accents (Mapped to your layout) */
+    accent-lavender: #88c0d0;   /* Frost Blue */
+    accent-sapphire: #81a1c1;   /* Storm Blue */
+}

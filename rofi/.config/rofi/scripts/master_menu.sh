@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Initialize the starting state
@@ -22,7 +21,7 @@ while true; do
         # Added MENU_THEME to the list
         MAIN_OPTIONS="$MENU_APPS\n$MENU_WEB\n$MENU_KEYS\n$MENU_WALLPAPER\n$MENU_THEME\n$MENU_TERM\n$MENU_CODE\n$MENU_POWER"
         
-        # Width shrunk to 350px
+        # Width shrunk to 330px
         CHOICE=$(echo -e "$MAIN_OPTIONS" | rofi -dmenu -i -p "Dashboard:" -theme-str 'window {width: 330px;}')
         
         # Capture the exit code (1 means user pressed Escape)
@@ -126,24 +125,8 @@ while true; do
     # 6. THEMES SUB-MENU
     # ==========================================
     elif [[ "$MENU_STATE" == "theme" ]]; then
-        THEME_OPTIONS="󰄛  Catppuccin Mocha\n󰐊  Evergreen (Everforest)\n󰏘  Tokyo Night"
-        
-        CHOICE=$(echo -e "$THEME_OPTIONS" | rofi -dmenu -i -p "Select Theme:" -theme-str 'window {width: 350px;}')
-        ROFI_EXIT=$?
-
-        # If user presses Escape, return to main
-        if [[ $ROFI_EXIT -eq 1 ]]; then
-            MENU_STATE="main"
-            continue
-        fi
-
-        # Pass the selection directly to your master apply engine
-        case "$CHOICE" in
-            *Catppuccin*) ~/.config/hypr/scripts/apply_theme.sh "catppuccin" & exit 0 ;;
-            *Evergreen*)  ~/.config/hypr/scripts/apply_theme.sh "evergreen" & exit 0 ;;
-            *Tokyo*)      ~/.config/hypr/scripts/apply_theme.sh "tokyonight" & exit 0 ;;
-            *) exit 0 ;;
-        esac
+        ~/.config/rofi/scripts/theme_switcher.sh
+        exit 0
     fi
 
 done
