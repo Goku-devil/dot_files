@@ -7,6 +7,8 @@ fi
 
 # 1. Write the state so Lua and Bash know what to load
 echo "$theme" > ~/.config/hypr/.theme_state
+# Update Neovim theme state
+echo "$1" > ~/.config/nvim/theme.txt
 
 # 2. Swap Symlinks
 ln -sf ~/.config/waybar/themes/${theme}.css ~/.config/waybar/style.css
