@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1. Read the current theme from your Hyprland engine
-current_theme=$(cat ~/.config/hypr/.theme_state 2>/dev/null || echo "unknown")
+current_theme=$(cat ~/.config/hypr/.theme_state 2>/dev/null || echo "nord")
 
 # 2. Define the dynamic Active color based on the current theme
 # This maps the tag to the specific accent color of the running theme

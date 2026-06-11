@@ -10,7 +10,7 @@ local function get_current_theme()
         f:close()
         if theme and theme ~= "" then return theme end
     end
-    return "catppuccin" -- Default fallback
+    return "nord" -- Default fallback
 end
 
 local theme_name = get_current_theme()
