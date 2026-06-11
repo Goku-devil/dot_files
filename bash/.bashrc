@@ -28,6 +28,9 @@ alias mk='mkdir'
 alias rm='rm -i'
 alias cl='clear'
 alias U='sudo pacman -Syu && yay -Syu'
+alias hypr='cd ~/.config/hypr/'
+alias wbar='cd ~/.config/waybar/'
+alias neo='cd ~/.config/nvim/'
 
 # ==============================================================================
 # CUSTOM BOXED PROMPT (TrueColor Theme Engine Integration)
@@ -38,10 +41,10 @@ _theme_prompt() {
 
     # 1. Catppuccin Mocha Colors (Default)
     local frame="\[\033[38;2;69;71;90m\]"        
-    local accent1="\[\033[38;2;116;199;236m\]"    
-    local accent2="\[\033[38;2;137;180;250m\]"    
-    local accent3="\[\033[38;2;180;190;254m\]"    
-    local text="\[\033[38;2;205;214;244m\]"       
+    local accent1="\[\033[38;2;116;199;236m\]"   
+    local accent2="\[\033[38;2;137;180;250m\]"   
+    local accent3="\[\033[38;2;180;190;254m\]"   
+    local text="\[\033[38;2;205;214;244m\]"        
     local prompt_col="\[\033[38;2;245;224;220m\]" 
 
     # 2. Evergreen Colors
@@ -71,16 +74,15 @@ _theme_prompt() {
         text="\[\033[38;2;224;222;244m\]"         # Text (#e0def4)
         prompt_col="\[\033[38;2;235;111;146m\]"   # Love (#eb6f92)
 
-    # 5. Nord Colors (NEW!)
+    # 5. Nord Colors
     elif [[ "$theme_state" == "nord" ]]; then
-        frame="\[\033[38;2;76;86;106m\]"          # Muted Slate (#4c566a)
+        frame="\[\033[38;2;129;161;193m\]"        # Storm Blue (#81a1c1) - Much brighter for visibility
         accent1="\[\033[38;2;136;192;208m\]"      # Frost Blue (#88c0d0)
-        accent2="\[\033[38;2;129;161;193m\]"      # Storm Blue (#81a1c1)
+        accent2="\[\033[38;2;143;188;187m\]"      # Aqua Blue (#8fbcbb)
         accent3="\[\033[38;2;163;190;140m\]"      # Aurora Green (#a3be8c)
-        text="\[\033[38;2;216;222;233m\]"         # Snow Storm (#d8dee9)
+        text="\[\033[38;2;229;233;240m\]"         # Snow Storm (#e5e9f0) - Brighter text
         prompt_col="\[\033[38;2;191;97;106m\]"    # Aurora Red (#bf616a)
-        
-    fi # <--- MOVED TO HERE!
+    fi 
 
     local reset="\[\033[0m\]"
 
@@ -93,6 +95,9 @@ _theme_prompt() {
     # Build layout structure
     PS1="${frame}╭─(${accent1}${arch_icon}${text}\u${accent2}${split_sym}\h${frame})─[${accent3}${dir_icon}\w${frame}]\n${frame}╰─${prompt_col}${prompt_sym}${reset} "
 }
-_theme_prompt
+
+# Execute the function every time a new prompt is drawn for live-reloading!
+PROMPT_COMMAND="_theme_prompt"
+
 export PATH=$PATH:/home/goku/.spicetify
 export PATH=$PATH:~/.spicetify
