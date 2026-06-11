@@ -8,51 +8,108 @@ set -e
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_DIR="$BASE_DIR/install_scripts"
 
-# Define color codes for better terminal readability
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-RED='\033[0;31m'
+# ==========================================
+# Cyberpunk Color Palette
+# ==========================================
+CYAN='\033[38;2;0;255;255m'
+MAGENTA='\033[38;2;255;0;255m'
+LIME='\033[38;2;57;255;20m'
+YELLOW='\033[38;2;255;255;0m'
+RED='\033[38;2;255;100;100m'
+BLUE='\033[38;2;100;149;237m'
+
+# Text formatting
+DIM='\033[2m'
+BOLD='\033[1m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}=======================================${NC}"
-echo -e "${BLUE}   Starting Arch Master Installation   ${NC}"
-echo -e "${BLUE}=======================================${NC}\n"
+# Visual elements
+CHECK='✓'
+CROSS='✗'
+ARROW='→'
+PIPE='│'
+
+# ==========================================
+# UI Functions
+# ==========================================
+print_header() {
+    echo -e "${CYAN}${BOLD}"
+    cat << "EOF"
+ ╭────────────────────────────────────────────────────────────────────────╮
+ │                                                                        │
+ │                   🚀 DOTFILES MASTER INSTALLER 🚀                     │
+ │                                                                        │
+ │            ARCH LINUX  •  HYPRLAND  •  AUTOMATED SETUP                │
+ │                                                                        │
+ ╰────────────────────────────────────────────────────────────────────────╯
+EOF
+    echo -e "${NC}\n"
+}
+
+print_section() {
+    echo -e "${CYAN}${BOLD}${PIPE} $1${NC}"
+    echo -e "${CYAN}${DIM}$(printf '━%.0s' {1..75})${NC}"
+}
+
+print_step() {
+    echo -e "${MAGENTA}${BOLD}[●] $1${NC}"
+}
+
+print_success() {
+    echo -e "${LIME}${CHECK}${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}${CROSS}${NC} ${BOLD}Error: $1${NC}"
+}
+
+print_summary() {
+    echo -e "${BLUE}${BOLD}$1${NC}"
+}
+
+# ==========================================
+# Script Start
+# ==========================================
+clear
+print_header
 
 # Check if the scripts directory exists
 if [ ! -d "$SCRIPTS_DIR" ]; then
-    echo -e "${RED}Error: Directory $SCRIPTS_DIR does not exist.${NC}"
+    print_error "Directory $SCRIPTS_DIR does not exist."
     exit 1
 fi
 
-# Step 1: System Update & Utilities
-echo -e "${GREEN}[1/3] Preparing System (arch_util)...${NC}"
-if [ -f "$SCRIPTS_DIR/arch_util" ]; then
-    # Note: If 'arch_util' is meant to be a library of functions rather than 
-    # a standalone executable, change the line below to: source "$SCRIPTS_DIR/arch_util"
-    bash "$SCRIPTS_DIR/arch_util"
-else
-    echo -e "${RED}Error: arch_util script not found.${NC}"
-    exit 1
-fi
+# Step 1: Install Essential Packages
+print_section "STEP 1: Installing Essential Packages"
+print_step "Running package installation script..."
+echo ""
 
-# Step 2: Install Essential Packages
-echo -e "\n${GREEN}[2/3] Installing Essential Packages (waybar, wlogout, etc.)...${NC}"
 if [ -f "$SCRIPTS_DIR/install" ]; then
     bash "$SCRIPTS_DIR/install"
+    print_success "Essential packages installed."
 else
-    echo -e "${RED}Error: install script not found.${NC}"
+    print_error "install script not found."
     exit 1
 fi
 
-# Step 3: Install Dotfiles
-echo -e "\n${GREEN}[3/3] Setting up Dotfiles...${NC}"
+# Step 2: Install Dotfiles
+print_section "STEP 2: Setting up Dotfiles"
+print_step "Running dotfiles installation script..."
+echo ""
+
 if [ -f "$SCRIPTS_DIR/install_dotfiles" ]; then
     bash "$SCRIPTS_DIR/install_dotfiles"
+    print_success "Dotfiles configured."
 else
-    echo -e "${RED}Error: install_dotfiles script not found.${NC}"
+    print_error "install_dotfiles script not found."
     exit 1
 fi
 
-echo -e "\n${BLUE}=======================================${NC}"
-echo -e "${GREEN}   Installation Completed Successfully!${NC}"
-echo -e "${BLUE}=======================================${NC}"
+# Completion
+echo ""
+print_section "✨ DEPLOYMENT COMPLETE"
+echo ""
+print_summary "  System architecture deployed successfully!"
+echo -e "${DIM}  All components are ready for your Hyprland workflow.${NC}"
+echo ""
+echo -e "${CYAN}Happy hacking! 🚀${NC}\n"

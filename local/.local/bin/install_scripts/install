@@ -6,12 +6,28 @@ set -e
 # ==========================================
 # Cyberpunk / Minimalist Aesthetics & Colors
 # ==========================================
+# Vibrant neon colors
 CYAN='\033[38;2;0;255;255m'
 MAGENTA='\033[38;2;255;0;255m'
 LIME='\033[38;2;57;255;20m'
+YELLOW='\033[38;2;255;255;0m'
+RED='\033[38;2;255;100;100m'
+BLUE='\033[38;2;100;149;237m'
+
+# Text formatting
 DIM='\033[2m'
-NC='\033[0m' # No Color
 BOLD='\033[1m'
+ITALIC='\033[3m'
+UNDERLINE='\033[4m'
+NC='\033[0m' # No Color
+
+# Animation characters
+SPINNER=( '⠋' '⠙' '⠹' '⠸' '⠼' '⠴' '⠦' '⠧' '⠇' '⠏' )
+CHECK='✓'
+CROSS='✗'
+ARROW='→'
+PIPE='│'
+STEP='●'
 
 # ==========================================
 # UI Functions
@@ -20,40 +36,76 @@ print_header() {
     clear
     echo -e "${CYAN}${BOLD}"
     cat << "EOF"
- ╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╮
- ┃    ______       __           '       _____      __              ┃
- ┃   / ____/____  / /__ __  __         / ___/___  / /_ __  __ ____ ┃
- ┃  / / __ / __ \/ //_// / / /  ____   \__ \/ _ \/ __// / / // __ \┃
- ┃ / /_/ // /_/ / ,<  / /_/ /  /___/  ___/ /  __/ /_ / /_/ // /_/ /┃
- ┃ \____/ \____/_/|_| \__,_/         /____/\___/\__/ \__,_// .___/ ┃
- ┃                                                        /_/      ┃
- ┃  ❯ ARCH LINUX // HYPRLAND ARCHITECTURE // AUTOMATED DEPLOYMENT  ┃
- ╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+ ╭────────────────────────────────────────────────────────────────────────╮
+ │                                                                        │
+ │        ______       __           '       _____      __                 │
+ │       / ____/____  / /__ __  __         / ___/___  / /_ __  __ ____    │
+ │      / / __ / __ \/ //_// / / /  ____   \__ \/ _ \/ __// / / // __ \   │
+ │     / /_/ // /_/ / ,<  / /_/ /  /___/  ___/ /  __/ /_ / /_/ // /_/ /   │
+ │     \____/ \____/_/|_| \__,_/         /____/\___/\__/ \__,_// .___/    │
+ │                                                              /_/       │
+ │      ❯ ARCH LINUX  •  HYPRLAND  •  DOTFILES DEPLOYMENT                 │
+ │                                                                        │
+ ╰────────────────────────────────────────────────────────────────────────╯
 EOF
     echo -e "${NC}\n"
 }
 
+print_section() {
+    echo -e "\n${CYAN}${BOLD}${PIPE} $1${NC}"
+    echo -e "${CYAN}${DIM}$(printf '━%.0s' {1..75})${NC}"
+}
+
 print_info() {
-    echo -e "${MAGENTA} 󰮯 ${NC} ${BOLD}$1${NC}"
+    echo -e "${MAGENTA}${STEP}${NC} ${BOLD}$1${NC}"
 }
 
 print_success() {
-    echo -e "${LIME} 󰄬 ${NC} $1"
+    echo -e "${LIME}${CHECK}${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}${CROSS}${NC} ${BOLD}Error: $1${NC}"
 }
 
 print_skip() {
-    echo -e "${DIM} 󰜺 $1 (Already installed)${NC}"
+    echo -e "${DIM}${ARROW} $1${NC} ${YELLOW}[skipped]${NC}"
+}
+
+print_warning() {
+    echo -e "${YELLOW}⚠ ${NC}$1"
+}
+
+spinner() {
+    local pid=$1
+    local delay=0.1
+    local spinstr='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    while kill -0 "$pid" 2>/dev/null; do
+        for i in $(seq 0 9); do
+            echo -ne "\r${MAGENTA}${spinstr:$i:1}${NC} Processing..."
+            sleep "$delay"
+        done
+    done
+    echo -ne "\r"
 }
 
 print_header
 
+# Tracking statistics
+INSTALLED_COUNT=0
+SKIPPED_COUNT=0
+FAILED_COUNT=0
+
 # ==========================================
 # 1. Install Dependencies & AUR Helper (yay)
 # ==========================================
-print_info "Synchronizing Base Dependencies..."
+print_section "STEP 1: Synchronizing Core Dependencies"
+
+print_info "Installing git and build essentials..."
 
 # Using --needed skips reinstalling if already present
 sudo pacman -S --needed --noconfirm git base-devel
+INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
 
 if ! command -v yay &> /dev/null; then
     print_info "Bootstrapping yay (AUR Helper)..."
@@ -63,19 +115,19 @@ if ! command -v yay &> /dev/null; then
     cd - > /dev/null
     rm -rf /tmp/yay
     print_success "yay installed successfully."
+    INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
 else
     print_skip "yay"
+    SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
 fi
-
-echo ""
 
 # ==========================================
 # 2. Official Arch Packages
 # ==========================================
+print_section "STEP 2: Evaluating Official Repository Packages"
+
 OFFICIAL_PACKAGES=(
     rofi  # Application launcher
-    waybar # Status bar for Wayland
-    wlogout # Logout utility for Wayland
     neovim # Terminal-based text editor
     swaync # Notification daemon for Wayland
     hyprshot # Screenshot utility for Wayland
@@ -92,52 +144,84 @@ OFFICIAL_PACKAGES=(
     xclip # Clipboard utility for X11 (some tools may still require it)
     fastfetch # System information tool
     dolphin # File manager (optional, can be replaced with a terminal file manager if preferred)
+    tk # A python GUI framework (for todo list on waybar)
+    nodejs # for nvim Meson
+    npm # node nvim meson dependencies
+    ddcutil # Monitor control utility (for waybar brightness/contrast controls)
 )
 
-print_info "Evaluating Official Repository Packages..."
+print_info "Scanning ${#OFFICIAL_PACKAGES[@]} packages..."
 
 MISSING_OFFICIAL=()
 for pkg in "${OFFICIAL_PACKAGES[@]}"; do
     if pacman -Qq "$pkg" &> /dev/null; then
         print_skip "$pkg"
+        SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
     else
         MISSING_OFFICIAL+=("$pkg")
     fi
 done
 
 if [ ${#MISSING_OFFICIAL[@]} -gt 0 ]; then
-    print_info "Batch installing missing official packages..."
+    print_info "Installing ${#MISSING_OFFICIAL[@]} missing package(s)..."
     sudo pacman -S --noconfirm "${MISSING_OFFICIAL[@]}"
-    print_success "Official packages synchronized."
+    print_success "Official packages synchronized. (${#MISSING_OFFICIAL[@]} installed)"
+    INSTALLED_COUNT=$((INSTALLED_COUNT + ${#MISSING_OFFICIAL[@]}))
+else
+    print_success "All official packages up to date!"
 fi
-
-echo ""
 
 # ==========================================
 # 3. AUR Packages
 # ==========================================
+print_section "STEP 3: Evaluating Arch User Repository (AUR) Packages"
+
 AUR_PACKAGES=(
     visual-studio-code-bin
     waybar-git
     wl-clip-persist
+    wlogout
+    zen-browser-bin
 )
 
-print_info "Evaluating Arch User Repository (AUR) Packages..."
+print_info "Scanning ${#AUR_PACKAGES[@]} AUR packages..."
 
 MISSING_AUR=()
 for pkg in "${AUR_PACKAGES[@]}"; do
     if pacman -Qq "$pkg" &> /dev/null; then
         print_skip "$pkg"
+        SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
     else
         MISSING_AUR+=("$pkg")
     fi
 done
 
 if [ ${#MISSING_AUR[@]} -gt 0 ]; then
-    print_info "Batch installing missing AUR packages..."
+    print_info "Installing ${#MISSING_AUR[@]} missing AUR package(s)..."
     yay -S --noconfirm "${MISSING_AUR[@]}"
-    print_success "AUR packages synchronized."
+    print_success "AUR packages synchronized. (${#MISSING_AUR[@]} installed)"
+    INSTALLED_COUNT=$((INSTALLED_COUNT + ${#MISSING_AUR[@]}))
+else
+    print_success "All AUR packages up to date!"
 fi
 
+# ==========================================
+# Deployment Summary
+# ==========================================
+print_section "📊 DEPLOYMENT SUMMARY"
+
+echo -e "${BLUE}${BOLD}Installation Statistics:${NC}"
+echo -e "  ${LIME}✓ Installed:${NC} $INSTALLED_COUNT"
+echo -e "  ${YELLOW}→ Skipped:${NC} $SKIPPED_COUNT"
+[ "$FAILED_COUNT" -gt 0 ] && echo -e "  ${RED}✗ Failed:${NC} $FAILED_COUNT"
+
 echo ""
-print_success "System architecture deployed. Ready."
+echo -e "${CYAN}${BOLD}System architecture deployed successfully!${NC}"
+echo -e "${DIM}Your dotfiles are ready to be deployed with stow.${NC}"
+echo ""
+echo -e "${MAGENTA}Next steps:${NC}"
+echo -e "  1. Review your configuration files"
+echo -e "  2. Run: ${BOLD}cd ~/.dotfiles && stow *${NC}"
+echo -e "  3. Restart your shell or login session"
+echo ""
+echo -e "${CYAN}Enjoy the Stay! 🚀${NC}\n"
