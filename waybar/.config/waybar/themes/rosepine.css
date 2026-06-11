@@ -62,8 +62,8 @@
 
 /* 3. Workspaces Layout */
 #workspaces { 
-    padding: 2px 8px; 
-    border-color: @overlay;
+    padding: 2px 8px;
+    border: 1px solid @crust;
 }
 #workspaces button { 
     color: @muted; 

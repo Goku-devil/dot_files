@@ -111,7 +111,7 @@
         "format-ethernet": "󰈀  Wired",
         "format-disconnected": "󰈂 Disconnected",
         "tooltip-format": "{ifname} via {gwaddr}",
-        "on-click": "~/.local/bin/custom-wifi.sh"
+        "on-click": "~/.config/rofi/scripts/network_manager.sh"
     },
 
     "custom/power": {

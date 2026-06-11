@@ -2,11 +2,14 @@
 /* Nord Palette for Waybar                   */
 /* ========================================= */
 
-@define-color base   #2e3440;
-@define-color mantle #292e39;
-@define-color crust  #232831;
+/* 1. Imports MUST be at the very top */
+@import "base.css";
 
-@define-color text     #d8dee9;
+@define-color base #2e3440;
+@define-color mantle #292e39;
+@define-color crust #232831;
+
+@define-color text #d8dee9;
 @define-color subtext0 #a5b0c5;
 @define-color subtext1 #e5e9f0;
 
@@ -14,15 +17,15 @@
 @define-color surface1 #434c5e;
 @define-color surface2 #4c566a;
 
-@define-color blue      #81a1c1;
-@define-color lavender  #88c0d0; /* Mapped to Frost Blue */
-@define-color sapphire  #8fbcbb; /* Teal */
-@define-color peach     #d08770; /* Orange */
-@define-color maroon    #bf616a; /* Red */
-@define-color red       #bf616a; /* Red */
-@define-color mauve     #b48ead; /* Purple */
-@define-color green     #a3be8c; /* Pale Green */
-@define-color yellow    #ebcb8b; /* Yellow */
+@define-color blue #81a1c1;
+@define-color lavender #88c0d0; /* Mapped to Frost Blue */
+@define-color sapphire #8fbcbb; /* Teal */
+@define-color peach #d08770; /* Orange */
+@define-color maroon #bf616a; /* Red */
+@define-color red #bf616a; /* Red */
+@define-color mauve #b48ead; /* Purple */
+@define-color green #a3be8c; /* Pale Green */
+@define-color yellow #ebcb8b; /* Yellow */
 
-/* Import the layout */
-@import "base.css";
+/* Theme specific Styles */
+#waybar #workspaces button.active { color: @blue; }
