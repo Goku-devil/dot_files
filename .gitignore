@@ -1,2 +1,12 @@
 lazy-lock.json
+
+# Theme state and generated theme outputs
 .theme_state
+hyprland/.config/hypr/.theme_state
+nvim/.config/nvim/theme.txt
+rofi/.config/rofi/colors.rasi
+kitty/.config/kitty/theme.conf
+waybar/.config/waybar/style.css
+swaync/.config/swaync/theme.css
+swaync/.config/swaync/style.css
+wlogout/.config/wlogout/style.css

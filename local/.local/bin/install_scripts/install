@@ -148,6 +148,7 @@ OFFICIAL_PACKAGES=(
     nodejs # for nvim Meson
     npm # node nvim meson dependencies
     ddcutil # Monitor control utility (for waybar brightness/contrast controls)
+    firefox # Web browser
 )
 
 print_info "Scanning ${#OFFICIAL_PACKAGES[@]} packages..."
@@ -181,7 +182,6 @@ AUR_PACKAGES=(
     waybar-git
     wl-clip-persist
     wlogout
-    zen-browser-bin
 )
 
 print_info "Scanning ${#AUR_PACKAGES[@]} AUR packages..."
