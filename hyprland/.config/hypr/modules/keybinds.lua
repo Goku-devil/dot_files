@@ -2,7 +2,7 @@
 local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu        = "~/.config/rofi/scripts/master_menu.sh"
-local browser = "firefox"
+local browser = "zen-browser"
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -36,10 +36,6 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
     hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
-
--- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + M", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -78,10 +74,9 @@ hl.bind("SUPER + F12", hl.dsp.exec_cmd("ddcutil setvcp 10 + 5 --noverify"))
 hl.bind("SUPER + F11", hl.dsp.exec_cmd("ddcutil setvcp 10 - 5 --noverify"))
 
 -- Web apps keybinds
-hl.bind("SUPER + A", hl.dsp.exec_cmd(
-    'firefox -P "WebApps" --name "webapp" --new-instance "https://gemini.google.com"'
-))
-hl.bind("SUPER + W", hl.dsp.exec_cmd("google-chrome-beta --app='https://web.whatsapp.com'"))
+hl.bind("SUPER + A", hl.dsp.exec_cmd("zen-browser --new-window 'https://gemini.google.com'"))
+hl.bind("SUPER + W", hl.dsp.exec_cmd("zen-browser --new-window 'https://web.whatsapp.com'"))
+hl.bind("SUPER + G", hl.dsp.exec_cmd("zen-browser --new-window 'https://www.github.com'"))
 
 -- Bind SUPER + H to launch clipboard menu
 hl.bind("SUPER + H", hl.dsp.exec_cmd("bash ~/.config/rofi/scripts/clipboard.sh"))
