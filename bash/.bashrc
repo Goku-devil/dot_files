@@ -31,6 +31,7 @@ alias U='sudo pacman -Syu && yay -Syu'
 alias hypr='cd ~/.config/hypr/'
 alias wbar='cd ~/.config/waybar/'
 alias neo='cd ~/.config/nvim/'
+alias rs='rustc'
 
 # ==============================================================================
 # CUSTOM BOXED PROMPT (TrueColor Theme Engine Integration)
