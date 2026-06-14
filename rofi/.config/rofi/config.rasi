@@ -56,47 +56,63 @@ entry {
 }
 
 listview {
-    lines: 8;
     spacing: 6px;
     scrollbar: false;
     border: 0px;
-    fixed-height: true;
+    fixed-height: false;    
+    columns: 5;
+    lines: 5;
 }
 
 element {
-    padding: 10px 12px;
+    padding: 14px 8px;
     border-radius: 6px;
-    spacing: 12px;
+    spacing: 8px;
     background-color: transparent;
+    orientation: vertical;
+    
+    /* Lock the container height so icons don't jump when text pops up */
+    fixed-height: true;
+    expand: false;
 }
 
 /* --- Fixed Element States --- */
 element normal.normal {
     background-color: transparent;
-    text-color: @fg-base;         /* FIXED: Was previously hiding text using @bg-base */
+    text-color: @fg-base;
 }
 
 element alternate.normal {
-    background-color: transparent; /* Clean transparent alternate look */
+    background-color: transparent;
     text-color: @fg-base;
 }
 
 element selected.normal {
-    background-color: @bg-surface;   /* Subtle container contrast */
-    text-color: @accent-sapphire;   /* Beautiful Sapphire highlight */
+    background-color: @bg-surface;
+    text-color: @accent-sapphire;
     border: 1px solid;
     border-color: @accent-lavender;
 }
 
-/* --- Critical Inherit Fixes --- */
+/* --- Child Layout Alignment & Hover Logic --- */
 element-icon {
-    size: 24px;
+    size: 32px;
+    horizontal-align: 0.5;
     background-color: transparent;
     text-color: inherit;
 }
 
+/* Hide text by default */
 element-text {
+    enabled: false;
+    horizontal-align: 0.5;
     vertical-align: 0.5;
     background-color: transparent;
-    text-color: inherit;            /* FIXED: Ensures text inherits selection colors */
+    text-color: inherit;    
+}
+
+/* Reveal text dynamically on selection or hover */
+element selected.normal element-text,
+element hover element-text {
+    enabled: true;
 }

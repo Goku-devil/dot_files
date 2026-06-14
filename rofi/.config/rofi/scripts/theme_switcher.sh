@@ -34,9 +34,10 @@ if [[ "$current_theme" == "nord" ]]; then opt5="  Nord   $active_badge"; fi
 # 6. Build the final menu
 options="$opt1\n$opt2\n$opt3\n$opt4\n$opt5"
 
-# 7. Launch Rofi ONCE with BOTH the markup flag AND the width string
-choice=$(echo -e "$options" | rofi -dmenu -i -markup-rows -p "Select Theme" -theme-str 'window {width: 350px;}' -theme ~/.config/rofi/config.rasi)
-
+# 7. Launch Rofi with layout overrides to restore text display and alignment
+choice=$(echo -e "$options" | rofi -dmenu -i -markup-rows -p "Select Theme" \
+-theme-str 'window {width: 350px;} listview {columns: 1; lines: 5;} element {orientation: horizontal; spacing: 12px; padding: 8px 12px;} element-text {enabled: true; horizontal-align: 0;}' \
+-theme ~/.config/rofi/config.rasi)
 if [[ -z "$choice" ]]; then
     exit 0
 fi

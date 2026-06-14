@@ -63,3 +63,31 @@ hl.config({
         fullscreen_on_one_column = true,
     },
 })
+
+-- Define a custom curve named "overshoot" for a bouncy effect
+hl.curve("overshoot", {
+    type = "bezier",
+    points = { {0.13, 0.99}, {0.29, 1.1} }
+})
+
+hl.animation({
+    leaf = "windowsIn",
+    enabled = true,
+    speed = 6,
+    bezier = "overshoot",
+    style = "slide"
+})
+
+-- Create a smooth, linear curve for a clean fade
+hl.curve("smooth_fade", {
+    type = "bezier",
+    points = { {0.5, 0}, {0.5, 1} }
+})
+
+hl.animation({
+    leaf = "specialWorkspace",
+    enabled = true,
+    speed = 6,
+    bezier = "overshoot",       -- Keeps your bouncy effect
+    style = "slidefadevert 20%" -- Fades in while sliding downward the last 20%
+})

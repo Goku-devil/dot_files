@@ -22,3 +22,16 @@ local wlogout_blur = hl.layer_rule({
   ignore_alpha = 0.0,
   no_anim      = true,
 })
+
+--kitty blur
+hl.config({
+    decoration = {
+        blur = {
+            enabled = true,
+            size = 8,
+            passes = 2,
+            new_optimizations = true,
+            ignore_opacity = true, -- Crucial: force blur to respect the window's opacity
+        }
+    }
+})

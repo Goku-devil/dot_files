@@ -88,3 +88,17 @@ hl.window_rule({
     
     opacity = "0.85 0.85", 
 })
+
+-- Opening Animation for rofi
+hl.layer_rule({
+    name  = "rofi-animation",
+    match = { namespace = "^(rofi)$" },
+    
+    -- Pick ONE animation style below:
+    -- animation = "popin 85%", 
+     animation = "slide",
+    -- animation = "fade",
+    
+    -- Optional: Frosted glass blur look behind the menu
+    blur = true,
+})

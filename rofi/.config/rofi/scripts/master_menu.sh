@@ -6,24 +6,15 @@ MENU_STATE="main"
 # Helper to open a URL in app mode when possible to avoid duplicate windows.
 open_webapp() {
     local url="$1"
-    # Prefer firefox: if running open a new tab, otherwise open a new window.
     if command -v firefox >/dev/null 2>&1; then
-        if pgrep -u "$USER" -x firefox >/dev/null 2>&1; then
-            firefox --new-tab "$url" >/dev/null 2>&1 &
-        else
-            firefox --new-window "$url" >/dev/null 2>&1 &
-        fi
-    elif command -v google-chrome-stable >/dev/null 2>&1; then
-        google-chrome-stable --app="$url" >/dev/null 2>&1 &
-    elif command -v chromium >/dev/null 2>&1; then
-        chromium --app="$url" >/dev/null 2>&1 &
+        # Creates/Runs a separate lightweight UI profile completely independent of your primary browser tabs
+        firefox -P webapp --new-window "$url" >/dev/null 2>&1 &
     else
         xdg-open "$url" >/dev/null 2>&1 &
     fi
 }
-
-
-
+# Dynamic string to force a clean vertical list layout over the global grid theme
+VERTICAL_THEME_STR='window {width: 330px;} listview {columns: 1; lines: 9;} element {orientation: horizontal; spacing: 12px; padding: 8px 12px;} element-text {enabled: true; horizontal-align: 0;}'
 while true; do
 
     # ==========================================
@@ -40,19 +31,16 @@ while true; do
         MENU_WALLPAPER="󰸉  Wallpaper" 
         MENU_THEME="󰔎  Themes"
 
-        # Added MENU_THEME and MENU_UTILS to the list
         MAIN_OPTIONS="$MENU_APPS\n$MENU_WEB\n$MENU_UTILS\n$MENU_KEYS\n$MENU_WALLPAPER\n$MENU_THEME\n$MENU_TERM\n$MENU_CODE\n$MENU_POWER"
         
-        # Width shrunk to 330px
-        CHOICE=$(echo -e "$MAIN_OPTIONS" | rofi -dmenu -i -p "Dashboard:" -theme-str 'window {width: 330px;}')
+        # Enforced vertical layout overrides
+        CHOICE=$(echo -e "$MAIN_OPTIONS" | rofi -dmenu -i -p "Dashboard:" -theme-str "$VERTICAL_THEME_STR")
         
-        # Capture the exit code (1 means user pressed Escape)
         ROFI_EXIT=$?
         if [[ $ROFI_EXIT -eq 1 ]]; then
             exit 0
         fi
 
-        # Logic for Main Menu
         case "$CHOICE" in
             "$MENU_APPS") rofi -show drun; exit 0 ;;
             "$MENU_TERM") kitty & exit 0 ;;
@@ -72,7 +60,7 @@ while true; do
     elif [[ "$MENU_STATE" == "web" ]]; then
         WEB_OPTIONS="󰧑  Gemini\n  YouTube\n󰊫  Gmail\n  WhatsApp\n  GitHub\n  LinkedIn\n󰿎  Crunchyroll"
         
-        CHOICE=$(echo -e "$WEB_OPTIONS" | rofi -dmenu -i -p "Web Apps:" -theme-str 'window {width: 330px;}')
+        CHOICE=$(echo -e "$WEB_OPTIONS" | rofi -dmenu -i -p "Web Apps:" -theme-str "${VERTICAL_THEME_STR//lines: 9;/lines: 7;}")
         ROFI_EXIT=$?
 
         if [[ $ROFI_EXIT -eq 1 ]]; then
@@ -96,7 +84,7 @@ while true; do
     # ==========================================
     elif [[ "$MENU_STATE" == "utils" ]]; then
         CFGS="  Hyprland\n  Rofi\n  Neovim\n  Waybar\n  Network Manager"
-        CFG_CHOICE=$(echo -e "$CFGS" | rofi -dmenu -i -p "Edit Config:" -theme-str 'window {width: 330px;}')
+        CFG_CHOICE=$(echo -e "$CFGS" | rofi -dmenu -i -p "Edit Config:" -theme-str "${VERTICAL_THEME_STR//lines: 9;/lines: 5;}")
         ROFI_EXIT=$?
 
         if [[ $ROFI_EXIT -eq 1 ]]; then
@@ -119,7 +107,7 @@ while true; do
     elif [[ "$MENU_STATE" == "keys" ]]; then
         KEY_OPTIONS=" Open Config\n + 󰌑 : Terminal\n + Space : Menu\n + B : Browser\n + F : Files\n + C : Close Window\n + V : Toggle Floating\n + 󰘶 + S : Screenshot"
         
-        CHOICE=$(echo -e "$KEY_OPTIONS" | rofi -dmenu -i -p "Shortcuts:" -theme-str 'window {width: 320px;}')
+        CHOICE=$(echo -e "$KEY_OPTIONS" | rofi -dmenu -i -p "Shortcuts:" -theme-str "${VERTICAL_THEME_STR//lines: 9;/lines: 8;}")
         ROFI_EXIT=$?
 
         if [[ $ROFI_EXIT -eq 1 ]]; then
@@ -143,7 +131,7 @@ while true; do
     elif [[ "$MENU_STATE" == "power" ]]; then
         PWR_OPTIONS="  Lock\n󰍃  Logout\n  Reboot\n  Shutdown"
         
-        CHOICE=$(echo -e "$PWR_OPTIONS" | rofi -dmenu -i -p "System:" -theme-str 'window {width: 350px;}')
+        CHOICE=$(echo -e "$PWR_OPTIONS" | rofi -dmenu -i -p "System:" -theme-str "${VERTICAL_THEME_STR//lines: 9;/lines: 4;}")
         ROFI_EXIT=$?
 
         if [[ $ROFI_EXIT -eq 1 ]]; then
