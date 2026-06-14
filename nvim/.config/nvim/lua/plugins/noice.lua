@@ -6,12 +6,22 @@ return {
         "rcarriga/nvim-notify",
     },
     config = function()
+        -- 1. Configure the notification engine for a minimalist aesthetic
+        require("notify").setup({
+            background_colour = "#000000", -- Keeps the background pitch black to blend in
+            stages = "fade",               -- Replaces bouncy slides with a clean fade
+            render = "minimal",            -- Strips thick borders, title bars, and giant icons
+            timeout = 5000,                -- Disappears quickly (2 seconds)
+            max_width = 45,                -- Keeps the text block narrow and tight
+            top_down = false,              -- Spawns them in the bottom-right corner
+        })
+
+        -- 2. Initialize Noice with your custom UI and new routing rules
         require("noice").setup({
             cmdline = {
                 enabled = true,
                 view = "cmdline_popup",
                 format = {
-                    -- Dynamically injects the mode title framed cleanly inside the top rounded border
                     cmdline = { pattern = "^:", icon = "❯", lang = "vim", opts = { border = { text = { top = " Command ", top_align = "center" } } } },
                     search_down = { kind = "search", pattern = "^/", icon = "", lang = "regex", opts = { border = { text = { top = " Search Down ", top_align = "center" } } } },
                     search_up = { kind = "search", pattern = "^%?", icon = "", lang = "regex", opts = { border = { text = { top = " Search Up ", top_align = "center" } } } },
@@ -30,13 +40,12 @@ return {
                         height = "auto",
                     },
                     border = {
-                        style = "rounded",  -- Smooth Unicode corners (╭ ╮ ╰ ╯)
+                        style = "rounded",
                         padding = { 0, 2 }, 
                     },
                     win_options = {
-                        -- Uses the theme's solid floating background to block out text from underlying buffers
                         winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-                        winblend = 0, -- 100% opaque to fix character-overlap soups
+                        winblend = 0, 
                         cursorline = false,
                     },
                 },
@@ -45,17 +54,22 @@ return {
                 },
             },
             routes = {
-                -- Redirects annoying errors, messages, and standard notifications down to the mini statusline view
+                -- SILENCE: Completely hide "written" (save) messages so they do not flash on screen
+                { filter = { event = "msg_show", find = "written" }, opts = { skip = true } },
+                
+                -- ROUTE TO MINI: Send minor UI messages to the tiny bottom line
                 { filter = { event = "msg_show" }, view = "mini" },
-                { filter = { error = true }, view = "mini" },
-                { filter = { event = "notify" }, view = "mini" },
+                
+                -- ALLOW POPUPS: Show actual plugin notifications and errors as floating popups
+                { filter = { error = true }, view = "notify" },
+                { filter = { event = "notify" }, view = "notify" },
             },
             presets = {
                 command_palette = true,
                 long_message_to_split = true,
                 lsp_doc_border = true,
             },
-            notify = { enabled = false }, -- Mutes massive toast notifications for maximum visual minimalism
+            notify = { enabled = true }, -- Re-enables the core notification engine
         })
     end
 }
