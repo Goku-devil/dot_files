@@ -1,5 +1,5 @@
 #!/bin/bash
-theme=${1:-nord}
+theme=$1
 
 # 1. Write the state so Lua and Bash know what to load
 echo "$theme" > ~/.config/hypr/.theme_state

@@ -24,7 +24,7 @@ configuration {
 }
 
 window {
-    width: 650px;
+    width: 450px;
     border: 2px solid;
     border-color: @accent-lavender;
     border-radius: 2px;          
@@ -60,20 +60,16 @@ listview {
     scrollbar: false;
     border: 0px;
     fixed-height: false;    
-    columns: 5;
-    lines: 5;
+    columns: 1;
+    lines: 8;
 }
 
 element {
-    padding: 14px 8px;
+    padding: 12px 16px;
     border-radius: 6px;
-    spacing: 8px;
+    spacing: 12px;
     background-color: transparent;
-    orientation: vertical;
-    
-    /* Lock the container height so icons don't jump when text pops up */
-    fixed-height: true;
-    expand: false;
+    orientation: horizontal;
 }
 
 /* --- Fixed Element States --- */
@@ -94,25 +90,16 @@ element selected.normal {
     border-color: @accent-lavender;
 }
 
-/* --- Child Layout Alignment & Hover Logic --- */
 element-icon {
-    size: 32px;
-    horizontal-align: 0.5;
+    size: 28px;
     background-color: transparent;
     text-color: inherit;
 }
 
-/* Hide text by default */
 element-text {
-    enabled: false;
-    horizontal-align: 0.5;
+    enabled: true;
+    horizontal-align: 0.0;
     vertical-align: 0.5;
     background-color: transparent;
     text-color: inherit;    
-}
-
-/* Reveal text dynamically on selection or hover */
-element selected.normal element-text,
-element hover element-text {
-    enabled: true;
 }
