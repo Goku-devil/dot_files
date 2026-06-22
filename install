@@ -186,9 +186,33 @@ if [ -z "$PACKAGES" ]; then
     print_error "No stow packages found in $BASE_DIR"
     FAILED_COUNT=$((FAILED_COUNT + 1))
 else
+    # Automatically clear out default configs to prevent Stow conflicts
+    print_info "Clearing default configurations..."
+    
+    CONFLICTING_TARGETS=(
+        "$HOME/.bashrc"
+        "$HOME/.config/fastfetch"
+        "$HOME/.config/hypr"
+        "$HOME/.config/kitty"
+        "$HOME/.config/nvim"
+        "$HOME/.config/rofi"
+        "$HOME/.config/swaync"
+        "$HOME/.config/waybar"
+        "$HOME/.config/wlogout"
+    )
+
+    for target in "${CONFLICTING_TARGETS[@]}"; do
+        # Check if the file or directory exists (-e) or is a broken symlink (-L)
+        if [ -e "$target" ] || [ -L "$target" ]; then
+            rm -rf "$target"
+            echo -e "  ${DIM}${ARROW} Removed existing ${target}${NC}"
+        fi
+    done
+
+    echo ""
     print_info "Stowing configurations to $TARGET_DIR..."
     
-    # Temporarily disable exit-on-error so the loop doesn't die on a conflict
+    # Temporarily disable exit-on-error just in case an unexpected conflict occurs
     set +e 
     
     for package in $PACKAGES; do
@@ -196,7 +220,7 @@ else
         
         # Run stow quietly, capturing both stdout and stderr
         ERROR_MSG=$(stow -R -t "$TARGET_DIR" "$package" 2>&1)
-        STOW_STATUS=$? # Capture the exit code immediately
+        STOW_STATUS=$?
         
         if [ $STOW_STATUS -eq 0 ]; then
             printf " ${GREEN}${BOLD}%s${NC}\n" "${CHECK} OK"
