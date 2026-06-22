@@ -187,22 +187,29 @@ if [ -z "$PACKAGES" ]; then
     FAILED_COUNT=$((FAILED_COUNT + 1))
 else
     print_info "Stowing configurations to $TARGET_DIR..."
+    
+    # Temporarily disable exit-on-error so the loop doesn't die on a conflict
+    set +e 
+    
     for package in $PACKAGES; do
         printf "  ${CYAN}%-32s${NC}" "Stowing $package..."
         
         # Run stow quietly, capturing both stdout and stderr
         ERROR_MSG=$(stow -R -t "$TARGET_DIR" "$package" 2>&1)
+        STOW_STATUS=$? # Capture the exit code immediately
         
-        if [ $? -eq 0 ]; then
+        if [ $STOW_STATUS -eq 0 ]; then
             printf " ${GREEN}${BOLD}%s${NC}\n" "${CHECK} OK"
         else
             printf " ${RED}${BOLD}%s${NC}\n" "${CROSS} FAIL"
-            echo -e "${RED}${ERROR_MSG}${NC}" | sed 's/^/      /'
+            echo -e "${DIM}${ERROR_MSG}${NC}" | sed 's/^/      /'
             FAILED_COUNT=$((FAILED_COUNT + 1))
         fi
     done
+    
+    # Re-enable exit-on-error
+    set -e
 fi
-
 # ------------------------------------------
 # Deployment Summary
 # ------------------------------------------
