@@ -57,7 +57,7 @@ fi
 WALLPAPER_PATH="$WALLPAPER_DIR/$SELECTED"
 
 # --- Apply Wallpaper ---
-# Using awww (or swww depending on what you installed)
+# Using awww (or awww depending on what you installed)
 if ! pgrep -x "awww-daemon" > /dev/null; then
     awww-daemon &
     sleep 0.5

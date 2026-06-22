@@ -254,4 +254,7 @@ else
 fi
 
 echo ""
+print_info "Bootstrapping default Nord theme..."
+~/.config/hypr/scripts/apply_theme.sh nord
+
 echo -e "${CYAN}Enjoy the Stay! 🚀${NC}\n"
