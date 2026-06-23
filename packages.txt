@@ -1,0 +1,36 @@
+# --- Core Desktop & Wayland ---
+hypridle
+hyprlock
+hyprshot
+hyprsunset
+swaync
+waybar-git or waybar
+wlogout
+
+# --- Launchers & Clipboard ---
+cliphist
+rofi
+rofi-emoji
+wl-clip-persist
+wl-clipboard
+wtype
+xclip
+
+# --- System Utilities ---
+ddcutil
+fastfetch
+stow
+wf-recorder
+
+# --- Apps & Development ---
+dolphin
+firefox
+neovim
+nodejs
+npm
+tk
+visual-studio-code-bin or vscodium
+
+# --- Fonts & Theming ---
+noto-fonts-emoji
+ttf-jetbrains-mono-nerd
