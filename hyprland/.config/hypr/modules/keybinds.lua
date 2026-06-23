@@ -2,7 +2,7 @@
 local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu        = "~/.config/rofi/scripts/master_menu.sh"
-local browser = "firefox"
+local browser = "zen-browser"
 
 ---------------------
 ---- KEYBINDINGS ----

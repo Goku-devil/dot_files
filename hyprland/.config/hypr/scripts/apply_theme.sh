@@ -19,7 +19,7 @@ cat "$HOME/.config/swaync/themes/${theme}.css" "$HOME/.config/swaync/base.css" >
 
 # 3. Restart Daemons Safely
 # Waybar
-killall waybar
+pkill -9 waybar
 waybar > /dev/null 2>&1 &
 
 # Kitty hot-reload (updates open terminals)
