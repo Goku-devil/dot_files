@@ -4,91 +4,114 @@ Welcome to my personal dotfiles repository. This collection contains the configu
 
 ## Key Components
 
-- **Hyprland** — Dynamic tiling Wayland compositor with smooth animations and modern window management. (https://hyprland.org)
-- **Waybar** — Configurable status bar styled with CSS. (https://github.com/Alexays/Waybar)
-- **Rofi** — Application launcher and window switcher, themed to match the setup. (https://github.com/davatorium/rofi)
-- **SwayNC** — Notification center for Wayland compositors. (https://github.com/ErikReider/SwayNotificationCenter)
-- **Wlogout** — Customizable logout menu for Wayland. (https://github.com/ArtsyMacaw/wlogout)
-- **Kitty** — GPU-accelerated terminal emulator with config and color schemes. (https://sw.kovidgoyal.net/kitty/)
-- **Neovim** (`nvim`) — Primary editor, configured with Lua for a fast editing experience. (https://neovim.io/)
-- **Neovim Configs** — LazyVim is a Neovim setup powered by 💤 lazy.nvim to make it easy to customize and extend your config. (https://www.lazyvim.org/)
-- **Bash** — Shell configuration, aliases, and helper functions.
-- **Fastfetch** — Lightweight system info tool with custom presets. (https://github.com/fastfetch-cli/fastfetch)
+- **[Hyprland](https://hyprland.org)** — Dynamic tiling Wayland compositor with smooth animations and modern window management.
+- **[Waybar](https://github.com/Alexays/Waybar)** — Highly customizable status bar styled with CSS.
+- **[Rofi](https://github.com/davatorium/rofi)** — Application launcher and window switcher, themed to match the desktop aesthetic.
+- **[SwayNC](https://github.com/ErikReider/SwayNotificationCenter)** — Notification center built for Wayland compositors.
+- **[Wlogout](https://github.com/ArtsyMacaw/wlogout)** — Customizable logout menu for Wayland.
+- **[Kitty](https://sw.kovidgoyal.net/kitty/)** — GPU-accelerated terminal emulator configured with custom color schemes.
+- **[Neovim](https://neovim.io/)** (`nvim`) — Primary editor, configured with Lua for a blazing-fast editing experience.
+- **[LazyVim](https://www.lazyvim.org/)** — A Neovim setup powered by 💤 `lazy.nvim` to make customization and plugin management effortless.
+- **Bash** — Shell configuration, aliases, and custom helper functions.
+- **[Fastfetch](https://github.com/fastfetch-cli/fastfetch)** — Lightweight system information tool with custom presets.
 
-## Samples
+## Showcase
 
-Here are a few screenshots from `asserts/show-case` showing the current look and feel of the setup.
+Here are a few screenshots from `assets/show-case` highlighting the current look and feel of the setup.
 
-![Showcase 1](asserts/show-case/image.png)
-
-![Showcase 2](asserts/show-case/image%20copy.png)
-
-![Showcase 3](asserts/show-case/image%20copy%202.png)
+![Showcase 1](assets/show-case/image.png)
+![Showcase 2](assets/show-case/image%20copy.png)
+![Showcase 3](assets/show-case/image%20copy%202.png)
 
 ## Repository Structure
 
-This repo groups configuration by app or service for easy deployment and customization.
+This repository groups configurations by application or service for easy deployment, symlinking, and customization.
 
 ```text
 .
-├── asserts/        # Wallpapers and media assets
+├── assets/         # Curated wallpapers and media assets
 │   ├── show-case/  # Example screenshots of the current config
-│   └── Wallpapers/ # Curated wallpaper sets
+│   └── Wallpapers/ # Minimalist and themed wallpaper sets
 ├── bash/           # Bash aliases, profile, and exports
 ├── fastfetch/      # Fastfetch presets
-├── hyprland/       # Hyprland config, rules, autostart scripts
+├── hyprland/       # Hyprland config, window rules, and autostart scripts
 ├── kitty/          # Kitty config and color themes
 ├── local/          # User scripts (install into ~/.local/bin)
-├── nvim/           # Neovim Lua configuration
+├── nvim/           # Neovim Lua configuration (LazyVim)
 ├── rofi/           # Rofi themes and scripts
-├── swaync/         # Notification center CSS and layout
-├── waybar/         # Waybar modules and CSS
+├── swaync/         # Notification center CSS and layout rules
+├── waybar/         # Waybar modules and CSS styling
 └── wlogout/        # Logout menu layout and assets
 ```
 
 ## Aesthetics & Design
 
-The configurations favor a dark, minimalist aesthetic with subtle glow and accent effects. CSS tweaks for Waybar and SwayNC plus curated wallpapers in `asserts/Wallpapers` help maintain a cohesive look.
+These configurations favor a dark, minimalist, and terminal-first aesthetic with subtle glow effects and cyberpunk-influenced accents. Custom CSS tweaks for Waybar and SwayNC, combined with curated wallpapers in `assets/Wallpapers`, ensure a cohesive and distraction-free visual experience across the entire desktop.
 
 ## Installation
 
-_Important: Review individual configs before applying them. Back up your existing config files._
+> **Important:** Review the individual configuration files before applying them to your system. Always back up your existing configurations before proceeding!
 
-1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Goku-devil/dot_files.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
-2a. Manual install (copy specific folders)
+### 2. Arch Linux Setup (Recommended)
+
+An installation script is provided specifically for Arch Linux. If you are using another distribution, please skip to Step 3.
 
 ```bash
-cp -r ~/.dotfiles/hyprland/hypr/ ~/.config/hypr
-cp -r ~/.dotfiles/waybar/ ~/.config/waybar
-#... and so on ...
+cd ~/.dotfiles
+chmod +x install  # Ensure the script is executable
+./install
 ```
 
-2b. Install using `stow` (recommended for managing symlinks)
+### 3. Other Distributions (Manual Setup)
+
+For non-Arch distributions, first install the necessary dependencies listed in `packages.txt` using your system's package manager. Once the packages are installed, use `stow` (recommended) or manually copy the configuration files.
+
+**Required Packages**
+
+| Category | Packages |
+| :--- | :--- |
+| **Core Desktop** | `hypridle`, `hyprlock`, `hyprshot`, `hyprsunset`, `swaync`, `waybar-git`, `wlogout` |
+| **Utilities** | `cliphist`, `rofi`, `wl-clipboard`, `xclip`, `wtype`, `fastfetch`, `stow`, `ddcutil` |
+| **Apps & Dev** | `neovim`, `visual-studio-code-bin`, `firefox`, `dolphin`, `nodejs`, `npm` |
+| **Fonts** | `ttf-jetbrains-mono-nerd`, `noto-fonts-emoji`, `rofi-emoji` |
+
+**Clear Existing Configurations:**
 
 ```bash
-# from within ~/.dotfiles
+rm -rf ~/.config/hypr ~/.config/kitty ~/.config/nvim ~/.config/fastfetch ~/.config/rofi ~/.config/swaync ~/.config/waybar ~/.config/wlogout ~/.bashrc
+```
+
+**Apply Configurations using GNU Stow:**
+
+```bash
+cd ~/.dotfiles
+# stowing the configs
 stow hyprland
 stow waybar
-#... so on ...
+stow kitty
+stow nvim
+stow bash
+stow fastfetch
+stow rofi
+stow swaync
+stow wlogout
 ```
 
-Notes
-
-- The included installation script is experimental — avoid running it unless you inspect and are comfortable with its behavior.
-- This setup was tested on Arch Linux; adapt package names and service management for other distros.
+*Note: This setup was primarily built and tested on Arch Linux. You may need to adapt package names and service management commands depending on your distribution.*
 
 ## Contributing & Customization
 
-- Tweak CSS and theme files in the `waybar/` and `swaync/` folders.
-- Add personal scripts to `local/` and ensure they're executable and in your PATH.
-- Open an issue or submit a pull request for suggestions or improvements.
+- **Themes:** Tweak the CSS and theme files located in the `waybar/` and `swaync/` folders to match your preferred color palette.
+- **Scripts:** Add your personal scripts to the `local/` directory and ensure they are executable (`chmod +x`) and added to your `$PATH`.
+- **Feedback:** Feel free to open an issue or submit a pull request for suggestions, bug fixes, or improvements!
 
 ---
 
-Created and maintained by _Goku-devil_
+*Created and maintained by [Goku-devil](https://github.com/Goku-devil)*
