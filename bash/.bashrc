@@ -102,3 +102,4 @@ PROMPT_COMMAND="_theme_prompt"
 
 export PATH=$PATH:/home/goku/.spicetify
 export PATH=$PATH:~/.spicetify
+. "$HOME/.cargo/env"
