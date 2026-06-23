@@ -11,6 +11,7 @@ Welcome to my personal dotfiles repository. This collection contains the configu
 - **Wlogout** — Customizable logout menu for Wayland. (https://github.com/ArtsyMacaw/wlogout)
 - **Kitty** — GPU-accelerated terminal emulator with config and color schemes. (https://sw.kovidgoyal.net/kitty/)
 - **Neovim** (`nvim`) — Primary editor, configured with Lua for a fast editing experience. (https://neovim.io/)
+- **Neovim Configs** — LazyVim is a Neovim setup powered by 💤 lazy.nvim to make it easy to customize and extend your config. (https://www.lazyvim.org/)
 - **Bash** — Shell configuration, aliases, and helper functions.
 - **Fastfetch** — Lightweight system info tool with custom presets. (https://github.com/fastfetch-cli/fastfetch)
 
