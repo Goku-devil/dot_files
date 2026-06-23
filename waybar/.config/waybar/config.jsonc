@@ -19,6 +19,7 @@
         "custom/hyprsunset"
     ],
     "modules-right": [
+        "custom/recording",
         "custom/vscode",
         "memory",
         "battery",
@@ -50,6 +51,15 @@
         "on-click": "bash ~/.config/rofi/scripts/clipboard.sh",
         "tooltip": true,
         "tooltip-format": "Click to view clipboard history"
+    },
+
+    "custom/recording": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "pgrep wf-recorder > /dev/null && ( [ $(( $(date +%s) % 2 )) -eq 0 ] && echo '{\"text\":\"  \", \"class\":\"on\"}' || echo '{\"text\":\"  \", \"class\":\"off\"}' ) || echo '{\"text\":\"\"}'",
+        "format": "{}",
+        "on-click": "~/.local/bin/recording.sh stop",
+        "tooltip": false
     },
 
     "clock": {

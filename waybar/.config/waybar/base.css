@@ -96,3 +96,23 @@ tooltip label {
 @keyframes blink {
     to { background-color: @red; color: @base; }
 }
+
+#custom-recording {
+    background-color: @base; 
+    border: 1px solid #f38ba8;
+    box-shadow: 0 0 5px @red; 
+    border-radius: 12px;
+    padding: 0px 10px;
+    margin: 4px 4px;
+    font-size: 16px;
+    min-width: 16px; 
+    transition: color 0.2s ease; 
+}
+
+#custom-recording.on {
+    color: @red;
+}
+
+#custom-recording.off {
+    color: @base;
+}

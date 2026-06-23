@@ -93,7 +93,7 @@
           },
           {
             "label": "   Open folder",
-            "command": "dolphin $HYPRSHOT_DIR"
+            "command": "dolphin $HOME/Pictures"
           }
         ]
       },
@@ -103,19 +103,19 @@
         "actions": [
           {
             "label": "󰹑   Entire screen",
-            "command": "swaync-client -cp && sleep 1 && recording.sh toggle fullscreen"
+            "command": "swaync-client -cp && sleep 1 && ~/.local/bin/recording.sh toggle fullscreen"
           },
           {
             "label": "󰆞   Select a region",
-            "command": "swaync-client -cp && sleep 1 && recording.sh toggle region"
+            "command": "swaync-client -cp && sleep 1 && ~/.local/bin/recording.sh toggle region"
           },
           {
             "label": "   Stop",
-            "command": "swaync-client -cp && recording.sh stop"
+            "command": "swaync-client -cp && ~/.local/bin/recording.sh stop"
           },
           {
             "label": "   Open folder",
-            "command": "dolphin $XDG_VIDEOS_DIR/Screencasts"
+            "command": "dolphin $HOME/Videos/Screencasts"
           }
         ]
       },
@@ -147,7 +147,7 @@
           },
           {
             "label": "󰍃   Logout",
-            "command": "hyprctl dispatch exit"
+            "command": "hyprctl dispatch \'hl.dsp.exit()\'"
           },
           {
             "label": "   Shut down",
