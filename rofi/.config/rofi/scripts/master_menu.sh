@@ -141,7 +141,7 @@ while true; do
 
         case "$CHOICE" in
             "  Lock") hyprlock; exit 0 ;; 
-            "󰍃  Logout") hyprctl dispatch exit; exit 0 ;; 
+            "󰍃  Logout") hyprctl dispatch 'hl.dsp.exit()'; exit 0 ;; 
             "  Reboot") systemctl reboot; exit 0 ;;
             "  Shutdown") systemctl poweroff; exit 0 ;;
             *) exit 0 ;;
