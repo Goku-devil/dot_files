@@ -34,10 +34,8 @@ record_region() {
     if pgrep -x "wf-recorder" > /dev/null; then
         stop_recording
     else
-        # Grab the geometry using slurp
         GEOMETRY=$(slurp)
         
-        # If the user presses Esc and cancels slurp, exit silently
         if [ -z "$GEOMETRY" ]; then
             exit 0
         fi

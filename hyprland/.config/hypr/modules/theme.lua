@@ -2,7 +2,6 @@
 ---- LOOK AND FEEL ----
 -----------------------
 
--- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
         gaps_in  = 0,
@@ -10,15 +9,9 @@ hl.config({
 
         border_size = 2,
 
-        --col = {
-            --active_border   = "rgb(89b4fa)",
-            --inactive_border = "rgba(595959aa)",
-        --},
-
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
         resize_on_border = true,
 
-        -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
         allow_tearing = false,
 
         layout = "dwindle",
@@ -30,7 +23,7 @@ hl.config({
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
-        inactive_opacity = 0.95,
+        inactive_opacity = 0.97,
 
         shadow = {
             enabled      = true,

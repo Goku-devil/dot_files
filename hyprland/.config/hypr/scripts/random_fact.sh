@@ -19,11 +19,9 @@ facts=(
     "Local LLMs like Llama 3 can run entirely on integrated graphics without an internet connection."
 )
 
-# Get the total number of facts in the array
 size=${#facts[@]}
 
 # Generate a random index based on the array size
 index=$((RANDOM % size))
 
-# Output the selected fact
 echo "${facts[$index]}"

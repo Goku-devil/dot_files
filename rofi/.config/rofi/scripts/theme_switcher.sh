@@ -4,7 +4,6 @@
 current_theme=$(cat ~/.config/hypr/.theme_state 2>/dev/null || echo "nord")
 
 # 2. Define the dynamic Active color based on the current theme
-# This maps the tag to the specific accent color of the running theme
 case "$current_theme" in
     "catppuccin") active_color="#cba6f7" ;; # Mauve
     "evergreen")  active_color="#a7c080" ;; # Green

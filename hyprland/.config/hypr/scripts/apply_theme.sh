@@ -7,7 +7,7 @@ theme="${1:-nord}"
 echo "$theme" > ~/.config/hypr/.theme_state
 echo "$theme" > ~/.config/nvim/theme.txt
 
-# 2. Swap Symlinks (Use full paths or $HOME to be completely safe)
+# 2. Swap Symlinks 
 ln -sf "$HOME/.config/waybar/themes/${theme}.css" "$HOME/.config/waybar/style.css"
 ln -sf "$HOME/.config/rofi/themes/${theme}.rasi" "$HOME/.config/rofi/colors.rasi"
 ln -sf "$HOME/.config/swaync/themes/${theme}.css" "$HOME/.config/swaync/theme.css"
@@ -22,15 +22,15 @@ cat "$HOME/.config/swaync/themes/${theme}.css" "$HOME/.config/swaync/base.css" >
 pkill -9 waybar
 waybar > /dev/null 2>&1 &
 
-# Kitty hot-reload (updates open terminals)
+# Kitty hot-reload 
 killall -SIGUSR1 kitty
 
-# SwayNC (Just kill and restart, letting it load the newly generated style.css)
+# SwayNC 
 killall swaync
 sleep 0.2
 swaync > /dev/null 2>&1 &
 
-# Apply Wallpaper (Fixed awww typo)
+# Apply Wallpaper
 # Ensure the daemon is running first, then apply image
 if command -v awww >/dev/null 2>&1; then
     awww query || awww-daemon &
@@ -41,7 +41,6 @@ fi
 # Give SwayNC a half-second to fully render its invisible layers
 sleep 0.5 
 
-# 5. Tell Hyprland to reload config files
 hyprctl reload
 
 notify-send "Theme Switched" "${theme^}"

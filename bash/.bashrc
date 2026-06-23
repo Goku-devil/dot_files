@@ -25,7 +25,8 @@ alias ..='cd ..'
 alias ~='cd ~'
 alias pacman='sudo pacman'
 alias mk='mkdir'
-alias rm='rm -i'
+alias rdir='rm -rf'
+alias rm='rm'
 alias cl='clear'
 alias U='sudo pacman -Syu && yay -Syu'
 alias hypr='cd ~/.config/hypr/'
@@ -97,9 +98,6 @@ _theme_prompt() {
     PS1="${frame}╭─(${accent1}${arch_icon}${text}\u${accent2}${split_sym}\h${frame})─[${accent3}${dir_icon}\w${frame}]\n${frame}╰─${prompt_col}${prompt_sym}${reset} "
 }
 
-# Execute the function every time a new prompt is drawn for live-reloading!
 PROMPT_COMMAND="_theme_prompt"
 
-export PATH=$PATH:/home/goku/.spicetify
-export PATH=$PATH:~/.spicetify
 . "$HOME/.cargo/env"

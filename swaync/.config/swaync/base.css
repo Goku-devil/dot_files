@@ -3,7 +3,6 @@
   color: @noti-fg;
 }
 
-/* FORCES the core GTK window to be completely invisible */
 window,
 window#swaync-control-center,
 window#swaync-notification-window {
@@ -28,14 +27,6 @@ window#swaync-notification-window {
   box-shadow: none;
   padding: 0;
 }
-
-/* Uncomment to enable specific urgency colors */
-/* .low {
-  background: yellow;
-}
-.normal {
-  background: green;
-} */
 
 .critical {
   border: 1px solid @noti-urgent;

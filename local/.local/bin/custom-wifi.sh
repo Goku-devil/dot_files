@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # --- 1. CALCULATE INTERNET SPEED (0.5s delay) ---
-# Find the active interface (eth or wlan)
 interface=$(ip route get 8.8.8.8 2>/dev/null | awk '{print $5; exit}')
 if [ -n "$interface" ]; then
     rx1=$(cat /sys/class/net/$interface/statistics/rx_bytes)

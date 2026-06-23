@@ -1,4 +1,4 @@
--- Set programs that you use
+-- Default Programs
 local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu        = "~/.config/rofi/scripts/master_menu.sh"
@@ -8,7 +8,7 @@ local browser = "zen-browser"
 ---- KEYBINDINGS ----
 ---------------------
 
-local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local mainMod = "SUPER" -- Sets "Super" key as main modifier
 
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
@@ -20,7 +20,7 @@ hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
+hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Move focus with mainMod + arrow keys
@@ -82,8 +82,9 @@ hl.bind("SUPER + G", hl.dsp.exec_cmd("firefox --new-window 'https://www.github.c
 hl.bind("SUPER + H", hl.dsp.exec_cmd("bash ~/.config/rofi/scripts/clipboard.sh"))
 
 -- emoji menu
-hl.bind("SUPER + E",
+hl.bind(
+    "SUPER + E",
     hl.dsp.exec_cmd(
        "rofi -show emoji -emoji-format \"{emoji}\" -theme-str 'window {width: 60%;} listview {columns: 6; lines: 6;} element {padding: 5px 0px;} element-text {horizontal-align: 0.5;}'" 
-    ))
-
+    )
+)

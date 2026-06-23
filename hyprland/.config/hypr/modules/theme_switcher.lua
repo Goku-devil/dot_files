@@ -1,4 +1,4 @@
--- Ensure Lua can find your themes folder
+-- Ensure Lua can find themes folder
 package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/hypr/?.lua"
 
 -- 1. Read the current theme from the state file
@@ -16,7 +16,7 @@ end
 local theme_name = get_current_theme()
 local palette = require("themes." .. theme_name)
 
--- 2. Apply borders using the CORRECT Native Lua table syntax
+-- 2. Apply borders 
 hl.config({
     general = {
         col = {

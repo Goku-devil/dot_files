@@ -2,22 +2,14 @@
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
--- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
--- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
-
--- Example window rules that are useful
-
 local suppressMaximizeRule = hl.window_rule({
-    -- Ignore maximize requests from all apps. You'll probably like this.
     name  = "suppress-maximize-events",
     match = { class = ".*" },
 
     suppress_event = "maximize",
 })
--- suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
-    -- Fix some dragging issues with XWayland
     name  = "fix-xwayland-drags",
     match = {
         class      = "^$",
@@ -31,15 +23,6 @@ hl.window_rule({
     no_focus = true,
 })
 
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
-
--- Hyprland-run windowrule
 hl.window_rule({
     name  = "move-hyprland-run",
     match = { class = "hyprland-run" },
@@ -54,7 +37,7 @@ hl.window_rule({
     float = true,
     size = "450 600",
     center = true,
-    rounding = 0 -- Adjust this number for more/less curve
+    rounding = 0
 })
 
 -- YouTube / Picture-in-Picture window rule
@@ -75,13 +58,10 @@ hl.window_rule({
 hl.window_rule({
     name  = "transparent-kitty",
     match = { class = "^(kitty)$" },
-    
-    -- Format is: "active_opacity inactive_opacity"
-    -- 0.85 is a great sweet spot for readability + blur
     opacity = "0.85 0.85", 
 })
 
--- Make your Todo app transparent
+-- Make Todo app transparent
 hl.window_rule({
     name  = "transparent-todo",
     match = { title = "^(Minimal Todo)$" },
@@ -93,12 +73,10 @@ hl.window_rule({
 hl.layer_rule({
     name  = "rofi-animation",
     match = { namespace = "^(rofi)$" },
-    
     -- Pick ONE animation style below:
+
     -- animation = "popin 85%", 
      animation = "slide",
     -- animation = "fade",
-    
-    -- Optional: Frosted glass blur look behind the menu
     blur = true,
 })

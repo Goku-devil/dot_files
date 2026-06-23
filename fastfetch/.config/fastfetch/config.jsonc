@@ -20,7 +20,6 @@
     },
     "modules": [
         "break",
-        // DISTRO GROUP
         {
             "type": "os",
             "key": "󰣇 DISTRO",
@@ -47,7 +46,6 @@
             "keyColor": "34"
         },
         "break",
-        // DE/WM GROUP
         {
             "type": "wm",
             "key": " DE/WM",
@@ -74,7 +72,6 @@
             "keyColor": "33"
         },
         "break",
-        // SYSTEM GROUP
         {
             "type": "host",
             "key": "󰌢 SYSTEM",
@@ -111,7 +108,6 @@
             "keyColor": "36"
         },
         "break",
-        // AUDIO GROUP
         {
             "type": "sound",
             "key": " AUDIO",
