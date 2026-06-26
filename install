@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-# Exit immediately if a command exits with a non-zero status
 set -e
 
-# Resolve the directory of the script dynamically
-# This ensures stow works correctly from wherever the script is executed
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR="$HOME"
 
-# ==========================================
-# Cyberpunk / Minimalist Aesthetics & Colors
-# ==========================================
+# ====================
+# Aesthetics & Colors
+# ====================
 CYAN='\033[38;2;0;255;255m'
 MAGENTA='\033[38;2;255;0;255m'
 LIME='\033[38;2;57;255;20m'
@@ -115,7 +112,8 @@ print_section "STEP 2: Evaluating Official Repository Packages"
 OFFICIAL_PACKAGES=(
     rofi neovim swaync hyprshot hypridle hyprlock hyprsunset stow
     ttf-jetbrains-mono-nerd cliphist wl-clipboard wtype rofi-emoji
-    noto-fonts-emoji xclip fastfetch dolphin tk nodejs npm ddcutil firefox wf-recorder hyprland
+    noto-fonts-emoji xclip fastfetch dolphin tk nodejs npm ddcutil firefox 
+    wf-recorder hyprland
 )
 
 print_info "Scanning ${#OFFICIAL_PACKAGES[@]} packages..."
@@ -202,7 +200,6 @@ else
     )
 
     for target in "${CONFLICTING_TARGETS[@]}"; do
-        # Check if the file or directory exists (-e) or is a broken symlink (-L)
         if [ -e "$target" ] || [ -L "$target" ]; then
             rm -rf "$target"
             echo -e "  ${DIM}${ARROW} Removed existing ${target}${NC}"
