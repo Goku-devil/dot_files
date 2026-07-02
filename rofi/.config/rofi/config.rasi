@@ -24,7 +24,7 @@ configuration {
 }
 
 window {
-    width: 450px;
+    width: 350px;
     border: 2px solid;
     border-color: @accent-lavender;
     border-radius: 2px;          
