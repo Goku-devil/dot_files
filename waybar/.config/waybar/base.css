@@ -2,117 +2,200 @@
    Global Settings & Layout (base.css)
    ======================================= */
 * {
-    font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", sans-serif;
-    font-size: 13px;
-    font-weight: 800; 
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    transition: all 0.2s ease-in-out;
+  font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  transition: all 0.2s ease-in-out;
 }
 
 window#waybar {
-    background-color: transparent;
-    color: @text;
+  background-color: transparent;
+  color: @text;
 }
 
 tooltip {
-    padding: 10px;
-    background: @base;
-    border-radius: 8px;
-    border: 1px solid @surface1;
+  padding: 10px;
+  background: @base;
+  border-radius: 8px;
+  border: 1px solid @surface1;
 }
 
 tooltip label {
-    padding: 10px;
-    color: @text;
+  padding: 10px;
+  color: @text;
 }
 
-#workspaces, #clock, #memory, #battery, #pulseaudio, #network,
-#custom-notification, #custom-launcher, #custom-vscode, #custom-todo,
-#custom-hyprsunset, #custom-clipboard, #custom-power {
-    background-color: @base;
-    color: @text;
-    border-radius: 12px;
-    padding: 2px 14px;
-    margin: 4px 2px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+#workspaces,
+#clock,
+#memory,
+#battery,
+#pulseaudio,
+#network,
+#custom-notification,
+#custom-launcher,
+#custom-vscode,
+#custom-todo,
+#custom-hyprsunset,
+#custom-clipboard,
+#custom-power {
+  background-color: @base;
+  color: @text;
+  border-radius: 12px;
+  padding: 2px 14px;
+  margin: 4px 2px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#clock:hover, #memory:hover, #battery:hover, #pulseaudio:hover,
-#network:hover, #custom-notification:hover, #custom-launcher:hover,
-#custom-vscode:hover, #custom-todo:hover, #custom-power:hover {
-    background-color: @surface1;
-    box-shadow: 0px 0px 8px alpha(@text, 0.15); 
+#clock:hover,
+#memory:hover,
+#battery:hover,
+#pulseaudio:hover,
+#network:hover,
+#custom-notification:hover,
+#custom-launcher:hover,
+#custom-vscode:hover,
+#custom-todo:hover,
+#custom-power:hover {
+  background-color: @surface1;
+  box-shadow: 0px 0px 8px alpha(@text, 0.15);
 }
 
 #workspaces button {
-    color: @text;
-    padding: 0 6px;
-    border-radius: 8px;
-    background: transparent;
+  color: @text;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: transparent;
 }
 
 #workspaces button:hover {
-    background-color: @surface1;
-    color: @text;
-    box-shadow: 0px 0px 8px alpha(@mauve, 0.4); 
+  background-color: @surface1;
+  color: @text;
+  box-shadow: 0px 0px 8px alpha(@mauve, 0.4);
 }
 
-#workspaces button.active { color: @mauve; }
-#workspaces button.urgent { color: @red; }
+#workspaces button.active {
+  color: @mauve;
+}
 
-#custom-launcher { color: @blue; padding-right: 18px; }
-#custom-launcher:hover { color: @lavender; }
-#clock { color: @blue; }
-#custom-vscode { color: @sapphire; }
-#memory { color: @green; }
-#battery { color: @green; }
-#battery.warning { color: @peach; }
+#workspaces button.urgent {
+  color: @red;
+}
+
+#custom-launcher {
+  color: @blue;
+  padding-right: 18px;
+}
+
+#custom-launcher:hover {
+  color: @lavender;
+}
+
+#clock {
+  color: @blue;
+}
+
+#custom-vscode {
+  color: @sapphire;
+}
+
+#memory {
+  color: @green;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.warning {
+  color: @peach;
+}
 
 #battery.critical:not(.charging) {
-    color: @red;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-#custom-todo { color: @yellow; }
-#custom-notification { color: @peach; }
-#pulseaudio { color: @sapphire; }
-#pulseaudio.muted { color: @surface2; }
-#network { color: @lavender; }
-#network.disconnected { color: @red; }
-#custom-power { color: @red; padding-right: 18px; }
-#custom-power:hover { color: @maroon; }
+#custom-todo {
+  color: @yellow;
+}
 
-#custom-hyprsunset.off { color: @surface2; }
-#custom-hyprsunset.off:hover { color: @text; background-color: alpha(@text, 0.05); }
-#custom-hyprsunset.on { color: @yellow; text-shadow: 0 0 5px alpha(@yellow, 0.6); }
-#custom-hyprsunset.on:hover { background-color: alpha(@yellow, 0.1); }
+#custom-notification {
+  color: @peach;
+}
+
+#pulseaudio {
+  color: @sapphire;
+}
+
+#pulseaudio.muted {
+  color: @surface2;
+}
+
+#network {
+  color: @lavender;
+}
+
+#network.disconnected {
+  color: @red;
+}
+
+#custom-power {
+  color: @red;
+  padding-right: 18px;
+}
+
+#custom-power:hover {
+  color: @maroon;
+}
+
+#custom-hyprsunset.off {
+  color: @surface2;
+}
+
+#custom-hyprsunset.off:hover {
+  color: @text;
+  background-color: alpha(@text, 0.05);
+}
+
+#custom-hyprsunset.on {
+  color: @yellow;
+  text-shadow: 0 0 5px alpha(@yellow, 0.6);
+}
+
+#custom-hyprsunset.on:hover {
+  background-color: alpha(@yellow, 0.1);
+}
 
 @keyframes blink {
-    to { background-color: @red; color: @base; }
+  to {
+    background-color: @red;
+    color: @base;
+  }
 }
 
 #custom-recording {
-    background-color: @base; 
-    border: 1px solid #f38ba8;
-    box-shadow: 0 0 5px @red; 
-    border-radius: 12px;
-    padding: 0px 10px;
-    margin: 4px 4px;
-    font-size: 16px;
-    min-width: 16px; 
-    transition: color 0.2s ease; 
+  background-color: @base;
+  border: 1px solid #f38ba8;
+  box-shadow: 0 0 5px @red;
+  border-radius: 12px;
+  padding: 0px 10px;
+  margin: 4px 4px;
+  font-size: 16px;
+  min-width: 16px;
+  transition: color 0.2s ease;
 }
 
 #custom-recording.on {
-    color: @red;
+  color: @red;
 }
 
 #custom-recording.off {
-    color: @base;
+  color: @base;
 }
