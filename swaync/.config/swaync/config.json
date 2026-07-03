@@ -81,11 +81,11 @@
         "actions": [
           {
             "label": "󰹑   Entire screen",
-            "command": "swaync-client -cp && sleep 1 && hyprshot -m output"
+            "command": "swaync-client -cp && sleep 1 && hyprshot -m output -o ~/Pictures/Screenshot"
           },
           {
             "label": "󰆞   Select a region",
-            "command": "swaync-client -cp && sleep 1 && hyprshot -m region"
+            "command": "swaync-client -cp && sleep 1 && hyprshot -m region -o ~/Pictures/Screenshot"
           },
           {
             "label": "   Screenshot menu",
