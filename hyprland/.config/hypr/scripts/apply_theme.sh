@@ -18,6 +18,7 @@ ln -sf "$HOME/.config/wlogout/themes/${theme}.css" "$HOME/.config/wlogout/style.
 cat "$HOME/.config/swaync/themes/${theme}.css" "$HOME/.config/swaync/base.css" > "$HOME/.config/swaync/style.css"
 
 # 3. Restart Daemons Safely
+
 # Waybar
 pkill -9 waybar
 waybar > /dev/null 2>&1 &
@@ -25,10 +26,9 @@ waybar > /dev/null 2>&1 &
 # Kitty hot-reload 
 killall -SIGUSR1 kitty
 
-# SwayNC 
-killall swaync
-sleep 0.2
-swaync > /dev/null 2>&1 &
+# SwayNC hot-reload (Fixed)
+swaync-client --reload-config
+swaync-client --reload-css
 
 # Apply Wallpaper
 # Ensure the daemon is running first, then apply image
