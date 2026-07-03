@@ -199,3 +199,23 @@ tooltip label {
 #custom-recording.off {
   color: @base;
 }
+
+#custom-media {
+    background-color: @base;
+    color: @text;
+    border-radius: 8px 0px 0px 8px; /* Rounds only the left side */
+    padding: 0px 6px 0px 12px;
+    margin: 4px 0px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-weight: bold;
+}
+
+#mpris {
+    background-color: @base;
+    color: @text; /* Dimmer text for the timer creates nice contrast */
+    border-radius: 0px 8px 8px 0px; /* Rounds only the right side */
+    padding: 0px 12px 0px 6px;
+    margin: 4px 0px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-weight: bold;
+}

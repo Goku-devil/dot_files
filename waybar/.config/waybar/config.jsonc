@@ -6,12 +6,13 @@
     "margin-right": 10,
     "height": 34,
     "spacing": 4,
-
-    // Layout configuration
+    
     "modules-left": [
         "custom/launcher",
         "hyprland/workspaces",
-        "custom/clipboard"
+        "custom/clipboard",
+        "custom/media",
+        "mpris"
     ],
     "modules-center": [
         "custom/todo",
@@ -28,105 +29,10 @@
         "network",
         "custom/power"
     ],
-
-    // --- Modules ---
-
+    
     "custom/launcher": {
-        "format": "", // Arch logo (or change to your preferred icon)
+        "format": "",
         "on-click": "~/.config/rofi/scripts/master_menu.sh",
-        "tooltip": false
-    },
-
-    "hyprland/workspaces": {
-        "disable-scroll": false,
-        "all-outputs": true,
-        "format": "{icon}",
-        "format-icons": {
-            "active": "",
-            "default": ""
-        }
-    },
-    "custom/clipboard": {
-        "format": "󰅌",
-        "on-click": "bash ~/.config/rofi/scripts/clipboard.sh",
-        "tooltip": true,
-        "tooltip-format": "Click to view clipboard history"
-    },
-
-    "custom/recording": {
-        "interval": 1,
-        "return-type": "json",
-        "exec": "pgrep wf-recorder > /dev/null && ( [ $(( $(date +%s) % 2 )) -eq 0 ] && echo '{\"text\":\"  \", \"class\":\"on\"}' || echo '{\"text\":\"  \", \"class\":\"off\"}' ) || echo '{\"text\":\"\"}'",
-        "format": "{}",
-        "on-click": "~/.local/bin/recording.sh stop",
-        "tooltip": false
-    },
-
-    "clock": {
-        "format": " {:%I:%M %p}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-
-    "custom/hyprsunset": {
-        "format": "{}",
-        "exec": "~/.config/waybar/scripts/hyprsunset.sh",
-        "return-type": "json",
-        "on-click": "~/.config/waybar/scripts/hyprsunset.sh toggle",
-        "interval": 1,
-        "tooltip": true
-    },
-
-    "custom/vscode": {
-        "format": "󰨞",
-        "on-click": "code",
-        "tooltip": false
-    },
-
-    "memory": {
-        "interval": 10,
-        "format": " {}%",
-        "tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB"
-    },
-
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-icons": ["", "", "", "", ""]
-    },
-
-    "custom/notification": {
-        "tooltip": false,
-        "format": "",
-        "on-click": "swaync-client -t -sw",
-        "escape": true
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰖁 Muted",
-        "format-icons": {
-            "default": ["", " ", " "]
-        },
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle", // Left-click to toggle mute
-        "on-click-right": "pavucontrol" // Right-click to open the volume mixer
-    },
-
-    "network": {
-        "format-wifi": "  {essid}",
-        "format-ethernet": "󰈀  Wired",
-        "format-disconnected": "󰈂 Disconnected",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "on-click": "~/.config/rofi/scripts/network_manager.sh"
-    },
-
-    "custom/power": {
-        "format": "",
-        "on-click": "wlogout", // Or your preferred power menu script
         "tooltip": false
     },
     "hyprland/workspaces": {
@@ -136,19 +42,118 @@
         "format-icons": {
             "active": "",
             "default": "",
-            "empty": "" // Optional: Different icon for empty workspaces
+            "empty": ""
         },
         "persistent-workspaces": {
-            "*": [ 1, 2, 3, 4 ] // Adjust these numbers to show exactly the ones you want
+            "*": [
+                1,
+                2,
+                3,
+                4
+            ]
         }
     },
+    "custom/clipboard": {
+        "format": "󰅌",
+        "on-click": "bash ~/.config/rofi/scripts/clipboard.sh",
+        "tooltip": true,
+        "tooltip-format": "Click to view clipboard history"
+    },
+    "custom/media": {
+        "exec": "/home/goku/.config/waybar/scripts/scroll_media.sh",
+        "format": "  {}",
+        "return-type": "text",
+        "escape": true
+    },
+    "mpris": {
+        "interval": 1,
+        "format": "[{position}/{length}]",
+        "format-paused": "[{position}/{length}]"
+    },
+    "custom/recording": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "pgrep wf-recorder > /dev/null && ( [ $(( $(date +%s) % 2 )) -eq 0 ] && echo '{\"text\":\"  \", \"class\":\"on\"}' || echo '{\"text\":\"  \", \"class\":\"off\"}' ) || echo '{\"text\":\"\"}'",
+        "format": "{}",
+        "on-click": "~/.local/bin/recording.sh stop",
+        "tooltip": false
+    },
+    "clock": {
+        "format": " {:%I:%M %p}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "custom/hyprsunset": {
+        "format": "{}",
+        "exec": "$HOME/.config/waybar/scripts/hyprsunset.sh",
+        "return-type": "json",
+        "on-click": "~/.config/waybar/scripts/hyprsunset.sh toggle",
+        "interval": 1,
+        "tooltip": true
+    },
+    "custom/vscode": {
+        "format": "󰨞",
+        "on-click": "code",
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 10,
+        "format": " {}%",
+        "tooltip-format": "RAM: {used:0.1f}GB / {total:0.1f}GB"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "swaync-client -t -sw",
+        "escape": true
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁 Muted",
+        "format-icons": {
+            "default": [
+                "",
+                " ",
+                " "
+            ]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀  Wired",
+        "format-disconnected": "󰈂 Disconnected",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "on-click": "~/.config/rofi/scripts/network_manager.sh"
+    },
+    "custom/power": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
     "custom/todo": {
-    "format": " {}",
-    "return-type": "json",
-    "exec": "python3 ~/.local/bin/todo_app.py status", // Added 'status'
-    "restart-interval": 5,
-    "on-click": "python3 ~/.local/bin/todo_app.py", // No 'status' here
-    "tooltip": true,
-    "escape": true 
-}
+        "format": " {}",
+        "return-type": "json",
+        "exec": "python3 $HOME/.local/bin/todo_app.py status",
+        "interval": 5,
+        "on-click": "python3 ~/.local/bin/todo_app.py",
+        "tooltip": true,
+        "escape": true
+    }
 }
