@@ -22,6 +22,8 @@ ddcutil
 fastfetch
 stow
 wf-recorder
+playerctl
+zscroll-git
 
 # --- Apps & Development ---
 dolphin

@@ -113,7 +113,7 @@ OFFICIAL_PACKAGES=(
     rofi neovim swaync hyprshot hypridle hyprlock hyprsunset stow
     ttf-jetbrains-mono-nerd cliphist wl-clipboard wtype rofi-emoji
     noto-fonts-emoji xclip fastfetch dolphin tk nodejs npm ddcutil firefox 
-    wf-recorder hyprland
+    wf-recorder hyprland playerctl
 )
 
 print_info "Scanning ${#OFFICIAL_PACKAGES[@]} packages..."
@@ -147,6 +147,7 @@ AUR_PACKAGES=(
     waybar-git
     wl-clip-persist
     wlogout
+    zscroll-git
 )
 
 print_info "Scanning ${#AUR_PACKAGES[@]} AUR packages..."
