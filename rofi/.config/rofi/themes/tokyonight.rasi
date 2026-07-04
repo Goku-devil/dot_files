@@ -1,6 +1,6 @@
 * {
     /* Tokyo Night Palette */
-    bg-base:         #15161ee6; /* Crust equivalent (90% Opacity) */
+    bg-base:         rgba(21, 22, 30, 0.5); /* Crust equivalent (50% Opacity) */
     bg-alt:          #1a1b26;   /* Base equivalent */
     bg-surface:      #292e42;   /* Surface equivalent */
     fg-base:         #c0caf5;   /* Text */

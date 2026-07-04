@@ -5,15 +5,11 @@ configuration {
 }
 
 window {
-    width: 380px;
-    
-    /* Change these from northwest to northeast */
+    width: 400px;
     location: northeast;
     anchor: northeast;
-    
-    /* Make x-offset negative to pull it away from the right edge */
-    x-offset: 0px; 
-    y-offset: 0px; 
+    x-offset: 0px;
+    y-offset: 0px;
 
     background-color: @bg-base;
     border: 2px;
@@ -24,29 +20,31 @@ window {
 mainbox {
     background-color: transparent;
     spacing: 10px;
-    padding: 15px;
+    padding: 20px;
 }
 
 /* --- Search Bar --- */
 inputbar {
-    background-color: @bg-surface;
+    background-color: @bg-alt; 
     text-color: @fg-base;
     border-radius: 8px;
-    padding: 10px;
+    padding: 12px 15px;
+    border: 1px;
+    border-color: @bg-surface;
     children: [ prompt, entry ];
 }
 
 prompt {
     background-color: transparent;
-    text-color: @accent-lavender;
-    margin: 0px 10px 0px 0px;
+    text-color: @accent-sapphire; 
+    margin: 0px 12px 0px 0px;
     font: "JetBrainsMono Nerd Font Bold 12";
 }
 
 entry {
     background-color: transparent;
     text-color: @fg-base;
-    placeholder: "Search...";
+    placeholder: "Search Networks...";
     placeholder-color: @fg-muted;
 }
 
@@ -55,17 +53,25 @@ listview {
     background-color: transparent;
     columns: 1;
     lines: 8;
-    fixed-height: true;
-    dynamic: true; /* FIX: Shrinks the window if there are fewer than 8 networks */
+    dynamic: true;
     scrollbar: false;
-    spacing: 6px;
+    spacing: 8px;
     cycle: true;
+    
+    /* Adds a subtle separator line below the search bar */
+    border: 2px 0px 0px 0px;
+    border-color: @bg-surface;
+    padding: 15px 0px 0px 0px;
 }
 
 /* --- Base Element Settings --- */
 element {
-    border-radius: 6px;
-    padding: 8px 12px;
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 10px 15px;
+    /* Hidden left border that acts as an accent edge */
+    border: 0px 0px 0px 4px;
+    border-color: transparent;
 }
 
 element-text {
@@ -74,22 +80,22 @@ element-text {
     vertical-align: 0.5;
 }
 
-/* --- FIX: Override Rofi's specific default classes --- */
+/* --- State Colors --- */
 
 /* Standard unselected items */
 element normal.normal, element alternate.normal {
-    background-color: transparent;
     text-color: @fg-base;
 }
 
-/* Currently connected network (Fixes the cream box) */
+/* Currently connected network */
 element normal.active, element alternate.active {
-    background-color: transparent;
     text-color: @accent-lavender;
+    border-color: @accent-lavender; /* Lights up the left edge */
 }
 
-/* Currently selected item via keyboard/mouse (Fixes the bright blue box) */
+/* Currently selected item via keyboard/mouse */
 element selected.normal, element selected.active {
     background-color: @bg-surface;
     text-color: @accent-sapphire;
+    border-color: @accent-sapphire; /* Lights up the left edge */
 }
