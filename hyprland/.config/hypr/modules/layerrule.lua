@@ -7,11 +7,12 @@ local swaync_blur = hl.layer_rule({
   no_anim   = true,
 })
 
--- Enable blur and ignore_alpha for rofi
-hl.layer_rule({
-  match        = { namespace = "rofi" },
-  blur         = true,
- ignore_alpha = 0.1,
+-- Named layer rule for rofi
+local rofi_blur = hl.layer_rule({
+    name         = "rofi blur",
+    match        = { namespace = "rofi" },
+    blur         = true,
+    ignore_alpha = 0.5,
 })
 
 -- Named layer rule for wlogout
