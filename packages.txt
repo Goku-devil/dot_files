@@ -10,7 +10,7 @@ wlogout
 
 # --- Launchers & Clipboard ---
 cliphist
-rofi
+rofi-wayland
 rofi-emoji
 wl-clip-persist
 wl-clipboard
@@ -24,6 +24,7 @@ stow
 wf-recorder
 playerctl
 zscroll-git
+networkmanager-dmenu
 
 # --- Apps & Development ---
 dolphin

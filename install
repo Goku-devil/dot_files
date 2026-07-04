@@ -110,7 +110,7 @@ fi
 print_section "STEP 2: Evaluating Official Repository Packages"
 
 OFFICIAL_PACKAGES=(
-    rofi neovim swaync hyprshot hypridle hyprlock hyprsunset stow
+    rofi-wayland neovim swaync hyprshot hypridle hyprlock hyprsunset stow
     ttf-jetbrains-mono-nerd cliphist wl-clipboard wtype rofi-emoji
     noto-fonts-emoji xclip fastfetch dolphin tk nodejs npm ddcutil firefox 
     wf-recorder hyprland playerctl
@@ -148,6 +148,7 @@ AUR_PACKAGES=(
     wl-clip-persist
     wlogout
     zscroll-git
+    networkmanager-dmenu
 )
 
 print_info "Scanning ${#AUR_PACKAGES[@]} AUR packages..."
