@@ -1,6 +1,6 @@
 * {
     /* Nord Palette */
-    bg-base:         rgba(46, 52, 64, 0.4); /* Base Slate (40% Opacity) */
+    bg-base:         rgba(46, 52, 64, 0.5); /* Base Slate (50% Opacity) */
     bg-alt:          #3b4252;   /* Surface */
     bg-surface:      #434c5e;   /* Overlay */
     fg-base:         #d8dee9;   /* Snow Storm Text */
