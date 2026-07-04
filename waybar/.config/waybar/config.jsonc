@@ -6,7 +6,6 @@
     "margin-right": 10,
     "height": 34,
     "spacing": 4,
-    
     "modules-left": [
         "custom/launcher",
         "hyprland/workspaces",
@@ -29,7 +28,6 @@
         "network",
         "custom/power"
     ],
-    
     "custom/launcher": {
         "format": "",
         "on-click": "~/.config/rofi/scripts/master_menu.sh",
@@ -140,7 +138,7 @@
         "format-ethernet": "󰈀  Wired",
         "format-disconnected": "󰈂 Disconnected",
         "tooltip-format": "{ifname} via {gwaddr}",
-        "on-click": "~/.config/rofi/scripts/network_manager.sh"
+        "on-click": "networkmanager_dmenu"
     },
     "custom/power": {
         "format": "",

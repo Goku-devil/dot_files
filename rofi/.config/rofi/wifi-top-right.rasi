@@ -1,89 +1,95 @@
-/* wifi-top-right.rasi - Adapted for your custom themes folder */
-@import "~/.config/rofi/colors.rasi"
+@import "colors.rasi"
 
-* {
-    font: "JetBrainsMono Nerd Font 10";
-    background-color: transparent;
-    text-color: @fg-base;
+configuration {
+    show-icons: false;
 }
 
 window {
-    location: north east;  
-    anchor: north east;
-    x-offset: -10px;       
-    y-offset: 10px;        
     width: 380px;
-    border: 1px;           
-    border-color: @bg-surface; 
+    
+    /* Change these from northwest to northeast */
+    location: northeast;
+    anchor: northeast;
+    
+    /* Make x-offset negative to pull it away from the right edge */
+    x-offset: 0px; 
+    y-offset: 0px; 
+
     background-color: @bg-base;
-    border-radius: 6px;    
+    border: 2px;
+    border-color: @accent-lavender;
+    border-radius: 2px;
 }
 
 mainbox {
-    spacing: 0px;
-    children: [ inputbar, listview, message ];
+    background-color: transparent;
+    spacing: 10px;
+    padding: 15px;
 }
 
+/* --- Search Bar --- */
 inputbar {
-    padding: 12px;
-    background-color: @bg-alt; 
+    background-color: @bg-surface;
+    text-color: @fg-base;
+    border-radius: 8px;
+    padding: 10px;
     children: [ prompt, entry ];
-    border: 0 0 1px 0;
-    border-color: @bg-base;
 }
 
 prompt {
-    text-color: @accent-sapphire; /* Using your secondary accent for the prompt */
-    font: "JetBrainsMono Nerd Font Bold 10";
-    margin: 0 10px 0 0;
+    background-color: transparent;
+    text-color: @accent-lavender;
+    margin: 0px 10px 0px 0px;
+    font: "JetBrainsMono Nerd Font Bold 12";
 }
 
 entry {
-    placeholder: "Search Wi-Fi...";
-    placeholder-color: @fg-muted; 
-    cursor: text;
+    background-color: transparent;
+    text-color: @fg-base;
+    placeholder: "Search...";
+    placeholder-color: @fg-muted;
 }
 
+/* --- List Area --- */
 listview {
-    lines: 8;               
-    fixed-height: false;    
+    background-color: transparent;
     columns: 1;
+    lines: 8;
+    fixed-height: true;
+    dynamic: true; /* FIX: Shrinks the window if there are fewer than 8 networks */
     scrollbar: false;
-    padding: 8px 5px;       
-    spacing: 4px;           
+    spacing: 6px;
+    cycle: true;
 }
 
+/* --- Base Element Settings --- */
 element {
-    padding: 8px 10px;
-    border-radius: 4px;
-    cursor: pointer;        
+    border-radius: 6px;
+    padding: 8px 12px;
 }
 
-element normal.normal {
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+/* --- FIX: Override Rofi's specific default classes --- */
+
+/* Standard unselected items */
+element normal.normal, element alternate.normal {
     background-color: transparent;
     text-color: @fg-base;
 }
 
-element selected.normal {
+/* Currently connected network (Fixes the cream box) */
+element normal.active, element alternate.active {
+    background-color: transparent;
+    text-color: @accent-lavender;
+}
+
+/* Currently selected item via keyboard/mouse (Fixes the bright blue box) */
+element selected.normal, element selected.active {
     background-color: @bg-surface;
-    text-color: @accent-lavender; /* Using your primary accent for selection */
-}
-
-element-text {
-    vertical-align: 0.5;
-    highlight: bold #a7c080; /* Hardcoded to your evergreen green just for search highlights */
-    cursor: inherit;
-}
-
-message {
-    padding: 10px 12px;
-    background-color: @bg-base;
-    border: 1px 0 0 0;
-    border-color: @bg-surface;
-}
-
-textbox {
-    text-color: @accent-lavender; /* Green speed stats */
-    font: "JetBrainsMono Nerd Font 9";
-    horizontal-align: 0.5;   
+    text-color: @accent-sapphire;
 }
