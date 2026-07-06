@@ -24,6 +24,14 @@ local wlogout_blur = hl.layer_rule({
   no_anim      = true,
 })
 
+-- Named layer rule for waybar
+local waybar_blur = hl.layer_rule({
+    name  = "waybar blur",
+    match = { namespace = "waybar" },
+    blur = true,
+    ignore_alpha = 0.5
+})
+
 --kitty blur
 hl.config({
     decoration = {

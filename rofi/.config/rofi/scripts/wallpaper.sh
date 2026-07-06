@@ -16,12 +16,10 @@ get_wallpapers() {
     for file in "$WALLPAPER_DIR"/*.{jpg,jpeg,png,gif,webp}; do
         [ -e "$file" ] || continue
         basename=$(basename "$file")
-        # Print format: "Filename\0icon\x1f/path/to/image.jpg\n"
         printf "%s\0icon\x1f%s\n" "$basename" "$file"
     done
 }
 
-# --- 4. Rofi Horizontal Gallery Layout ---
 # --- 4. Rofi Grid Gallery Layout ---
 ROFI_THEME='
 @import "~/.config/rofi/colors.rasi"
@@ -36,7 +34,7 @@ window {
     background-color: @bg-base;
     border: 2px solid;
     border-color: @accent-lavender; 
-    border-radius: 16px;
+    border-radius: 2px;
     padding: 20px;
 }
 inputbar {

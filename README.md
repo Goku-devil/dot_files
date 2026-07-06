@@ -78,7 +78,7 @@ For non-Arch distributions, first install the necessary dependencies listed in `
 | Category | Packages |
 | :--- | :--- |
 | **Core Desktop** | `hyprland`, `hypridle`, `hyprlock`, `hyprshot`, `hyprsunset`, `swaync`, `waybar-git`, `wlogout` |
-| **Utilities** | `cliphist`, `rofi`, `wl-clipboard`, `xclip`, `wtype`, `fastfetch`, `stow`, `ddcutil` |
+| **Utilities** | `cliphist`, `rofi`, `wl-clipboard`, `xclip`, `wtype`, `fastfetch`, `stow`, `ddcutil`, `networkmanager-dmenu`, `playerctl`, `zscroll-git`, `wf-recorder` |
 | **Apps & Dev** | `neovim`, `visual-studio-code-bin`, `firefox`, `dolphin`, `nodejs`, `npm` |
 | **Fonts** | `ttf-jetbrains-mono-nerd`, `noto-fonts-emoji`, `rofi-emoji` |
 
