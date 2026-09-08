@@ -23,7 +23,6 @@ fastfetch
 stow
 wf-recorder
 playerctl
-zscroll-git
 networkmanager-dmenu
 
 # --- Apps & Development ---

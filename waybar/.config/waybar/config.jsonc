@@ -10,7 +10,6 @@
         "custom/launcher",
         "hyprland/workspaces",
         "custom/clipboard",
-        "custom/media",
         "mpris"
     ],
     "modules-center": [
@@ -56,17 +55,6 @@
         "on-click": "bash ~/.config/rofi/scripts/clipboard.sh",
         "tooltip": true,
         "tooltip-format": "Click to view clipboard history"
-    },
-    "custom/media": {
-        "exec": "/home/goku/.config/waybar/scripts/scroll_media.sh",
-        "format": "  {}",
-        "return-type": "text",
-        "escape": true
-    },
-    "mpris": {
-        "interval": 1,
-        "format": "[{position}/{length}]",
-        "format-paused": "[{position}/{length}]"
     },
     "custom/recording": {
         "interval": 1,
@@ -122,7 +110,7 @@
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "󰖁 Muted",
+        "format-muted": "󰖁",
         "format-icons": {
             "default": [
                 "",
@@ -134,7 +122,7 @@
         "on-click-right": "pavucontrol"
     },
     "network": {
-        "format-wifi": "  {essid}",
+        "format-wifi": " ",
         "format-ethernet": "󰈀  Wired",
         "format-disconnected": "󰈂 Disconnected",
         "tooltip-format": "{ifname} via {gwaddr}",

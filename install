@@ -113,7 +113,7 @@ OFFICIAL_PACKAGES=(
     rofi-wayland neovim swaync hyprshot hypridle hyprlock hyprsunset stow
     ttf-jetbrains-mono-nerd cliphist wl-clipboard wtype rofi-emoji
     noto-fonts-emoji xclip fastfetch dolphin tk nodejs npm ddcutil firefox 
-    wf-recorder hyprland playerctl
+    wf-recorder hyprland playerctl awww
 )
 
 print_info "Scanning ${#OFFICIAL_PACKAGES[@]} packages..."
@@ -147,7 +147,6 @@ AUR_PACKAGES=(
     waybar-git
     wl-clip-persist
     wlogout
-    zscroll-git
     networkmanager-dmenu
 )
 
